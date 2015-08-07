@@ -1,0 +1,235 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700");
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: #F2F2F2;
+	overflow: hidden;
+	color: #2D2D2D;
+	font-family: "Roboto";
+}
+
+div.content {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+div.content > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+div.content div.wrapper {
+	position: relative;
+	background-color: #FFFFFF;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+	min-width: 600px; min-height: 360px;
+	width: 600px; height: 360px;
+	margin: 0px auto;
+}
+
+div.content div.wrapper > div.resize {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 1rem;
+	height: 1rem;
+	color: #D2D2D2;
+	text-align: center;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+header {
+	position: relative;
+	background-color: #F44336;
+	box-sizing: border-box;
+	height: 58px;
+	color: #FFFFFF;
+	font-family: "Roboto Condensed";
+	font-size: 2rem;
+}
+
+header div.logo {
+	display: inline-block;
+	position: relative;
+	margin: 10px 15px;
+	font-weight: 700;
+}
+
+header div.logo > span:before {
+	content: attr(data-version);
+	position: absolute;
+	top: 3px;
+	left: 100%;
+	font-size: .65rem;
+	font-weight: 400;
+}
+
+header ul.nav,
+header ul.nav > li {
+	display: inline-block;
+}
+
+header ul.nav {
+	position: absolute;
+	right: 15px;
+	font-size: 1.75rem;
+	list-style-type: none;
+}
+
+header ul.nav > li {
+	padding: 12px 15px;
+	text-align: center;
+	cursor: pointer;
+	-webkit-transition: background-color .1s ease;
+	-moz-transition: background-color .1s ease;
+	-ms-transition: background-color .1s ease;
+	-o-transition: background-color .1s ease;
+	transition: background-color .1s ease;
+}
+
+header ul.nav > li:last-child {
+	margin-right: 0px;
+}
+
+header ul.nav > li:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+div.area {
+	position: absolute;
+	top: 58px; bottom: 0px;
+	left: 0px; right: 0px;
+}
+
+div.queue,
+div.playlist {
+	box-sizing: border-box;
+	height: 100%;
+	padding: 10px 15px;
+}
+
+div.queue > div.none span:before {
+	content: "There are no requests in the queue.";
+}
+
+div.playlist {
+	display: none;
+}
+
+div.playlist > div.none span:before {
+	content: "There are no requests in your playlist.";
+}
+
+div.none {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+div.none > div {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.none span:before {
+	color: #D2D2D2;
+	font-family: "Roboto Condensed";
+	font-size: 1.5rem;
+}
+
+ul.item_list {
+	display: none;
+	list-style-type: none;
+}
+
+ul.item_list > li {
+	position: relative;
+	border-top: 1px solid #EAEAEA;
+	width: 100%;
+	height: 43px;
+	padding: 8px 0px;
+}
+
+ul.item_list > li:first-child {
+	border: none;
+	padding-top: 0px;
+}
+
+ul.item_list > li:last-child {
+	padding-bottom: 0px;
+}
+
+ul.item_list > li > div {
+	display: inline-block;
+}
+
+ul.item_list > li div.icon {
+	width: 4rem;
+	font-size: 2.25rem;
+	text-align: center;
+}
+
+ul.item_list > li div.details {
+	width: calc(100% - 10rem);
+	line-height: .9rem;
+}
+
+ul.item_list > li div.details > span {
+	display: block;
+}
+
+ul.item_list > li div.details > span.title {
+	position: relative;
+	top: 3px;
+	overflow: hidden;
+	font-size: 1.25rem;
+	line-height: 1.25rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+ul.item_list > li div.details > span.submitter {
+	font-size: .75rem;
+}
+
+ul.item_list > li div.duration {
+	position: absolute;
+	right: 0px;
+	width: 6rem;
+	height: 43px;
+	font-size: 1.25rem;
+}
+
+ul.item_list > li div.duration > div {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+ul.item_list > li div.duration > div > div {
+	display: table-cell;
+	text-align: right;
+	vertical-align: middle;
+}
+
+ul.item_list > li div.duration span {
+	display: inline-block;
+	margin-right: 1rem;
+}

@@ -1,0 +1,7 @@
+div.ui-icon {
+	background: none;
+}
+
+div.ui-draggable-dragging {
+	cursor: move;
+}
