@@ -7,10 +7,15 @@ EOF
 
 if [[ -n "$1" ]]
 then
-	git describe --tags --long > ./VERSION
+	DIR=$(pwd)
+	cd "$(dirname '${BASH_SOURCE[0]}')"
+
+	git describe --tags --long | tr -d "\n" > src/VERSION_DEVEL
 	git add --all
 	git commit -m "$1"
 	git push origin master
+
+	cd "$DIR"
 else
 	printf %s "${missing[@]}"
 fi

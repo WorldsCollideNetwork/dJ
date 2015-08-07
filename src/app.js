@@ -1,5 +1,6 @@
 var http     = require("http"),
     path     = require("path"),
+    fs       = require("fs"),
     express  = require("express"),
     socketio = require("socket.io");
 
@@ -12,7 +13,9 @@ app.set("view engine", "jade");
 app.use(express.static(path.join(__dirname, "views")));
 
 app.get("/", function(req, res){
-	res.render("index");
+	res.render("index", {
+		version: fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"))
+	});
 });
 
 require("./sockets")(socketio, io);

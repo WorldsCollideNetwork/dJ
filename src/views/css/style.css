@@ -72,12 +72,16 @@ header div.logo {
 }
 
 header div.logo > span:before {
-	content: attr(data-version);
+	content: "BETA";
 	position: absolute;
 	top: 3px;
 	left: 100%;
 	font-size: .65rem;
 	font-weight: 400;
+}
+
+header div.logo > span:hover:before {
+	content: attr(data-version);
 }
 
 header ul.nav,
