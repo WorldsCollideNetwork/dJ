@@ -10,7 +10,7 @@ then
 	git describe --tags --long > ./VERSION
 	git add --all
 	git commit -m ${missing[@]}
-	git 
+	git push origin master
 else
 
 fi
