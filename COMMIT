@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mapfile missing <<EOF
+commit: missing operand
+try './commit <message>' to push a commit.
+EOF
+
+if [[ -n "$1" ]]
+then
+	git describe --tags --long > ./VERSION
+	git add --all
+	git commit -m ${missing[@]}
+	git 
+else
+
+fi
