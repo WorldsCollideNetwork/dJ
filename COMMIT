@@ -9,8 +9,8 @@ if [[ -n "$1" ]]
 then
 	git describe --tags --long > ./VERSION
 	git add --all
-	git commit -m ${missing[@]}
+	git commit -m "$1"
 	git push origin master
 else
-
+	printf %s "${missing[@]}"
 fi
