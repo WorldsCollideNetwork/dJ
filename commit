@@ -11,9 +11,9 @@ then
 	cd "$(dirname '${BASH_SOURCE[0]}')"
 
 	git describe --tags --long | \
-	tr -d "\n" | \
-	cut -f 1,2 -d "-" > src/VERSION_DEVEL
-	
+	cut -f 1,2 -d "-" | \
+	tr -d "\n" > src/VERSION_DEVEL
+
 	git add --all
 	git commit -m "$1"
 	git push origin master
