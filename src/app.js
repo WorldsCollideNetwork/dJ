@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname, "views")));
 
 app.get("/", function(req, res){
 	res.render("index", {
-		version: fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"))
+		version: fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8")
 	});
 });
 
-require("./sockets")(socketio, io);
+require("./sockets")(socketio, io)
