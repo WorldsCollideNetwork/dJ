@@ -1,0 +1,89 @@
+div.screen,
+div.content div.wrapper div.modal {
+	visibility: hidden;
+	opacity: 0;
+	-webkit-transition: visibility .5s ease, opacity .5s ease;
+	-moz-transition: visibility .5s ease, opacity .5s ease;
+	-ms-transition: visibility .5s ease, opacity .5s ease;
+	-o-transition: visibility .5s ease, opacity .5s ease;
+	transition: visibility .5s ease, opacity .5s ease;
+}
+
+div.screen {
+	position: absolute;
+	top: 0px; bottom: 0px;
+	left: 0px; right: 0px;
+	background-color: rgba(0, 0, 0, 0.4)
+}
+
+div.content div.wrapper div.modal {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	background-color: #FFFFFF;
+	border-radius: 2px;
+	box-sizing: border-box;
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+	width: 375px;
+	margin-left: -187.5px;
+	padding: 20px;
+}
+
+div.content div.wrapper div.modal input {
+	border: none;
+	border-bottom: 1px solid #D2D2D2;
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 5px;
+	padding: 10px 0px;
+	color: inherit;
+	font-family: "Roboto Condensed";
+	font-size: 1.15rem;
+}
+
+div.content div.wrapper div.modal button {
+	background-color: #F44336;
+	border: none;
+	border-radius: 2px;
+	box-shadow: 0px 3px 0px #D02B2B;
+	margin-bottom: 3px;
+	padding: 7px 25px;
+	color: #FFFFFF;
+	font-family: "Roboto Condensed";
+	font-size: 1.15rem;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+div.content div.wrapper div.modal button:before {
+	content: attr(name)
+}
+
+div.content div.wrapper div.modal button:active {
+	position: relative;
+	top: 3px;
+	box-shadow: none;
+}
+
+div.content div.wrapper div.modal input:focus,
+div.content div.wrapper div.modal button:focus {
+	outline: none;
+}
+
+div.content div.wrapper div.modal > * {
+	margin-top: 15px;
+}
+
+div.content div.wrapper div.modal > *:first-child {
+	margin-top: 0px;
+}
+
+div.screen.visible,
+div.content div.wrapper div.modal.visible {
+	visibility: visible;
+	opacity: 1;
+}
+
+div.content div.wrapper div.modal.visible {
+	z-index: 1;
+}

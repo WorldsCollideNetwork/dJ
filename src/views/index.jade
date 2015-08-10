@@ -5,7 +5,7 @@ html
 		link(rel="stylesheet", type="text/css", href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
 		title WCN dJ #{version}
 		link(rel="stylesheet", type="text/css", href="/css/style.css")
-		link(rel="stylesheet", type="text/css", href="/css/animations.css")
+		link(rel="stylesheet", type="text/css", href="/css/modals.css")
 		link(rel="stylesheet", type="text/css", href="/css/overrides.css")
 		script(type="text/javascript", src="//code.jquery.com/jquery-2.1.4.min.js")
 		script(type="text/javascript", src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js")
@@ -42,6 +42,9 @@ html
 						div.popup
 							i.fa.fa-arrows-alt
 					div.modal.modal-login
+						input.username(type="text", placeholder="Username")
+						input.password(type="password", placeholder="Password")
+						button(name="login")
 		div.screen
 		script(type="text/javascript", src="/js/utils.js")
 		script(type="text/javascript", src="/js/queue_utils.js")
