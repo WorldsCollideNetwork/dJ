@@ -9,5 +9,5 @@ $(document).ready(function(){
 		window.params = JSON.parse('{"' + decodeURI(window.location.search.substring(1)).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 	}
 
-	look.first_run(window.params);
+	look.first_run();
 });

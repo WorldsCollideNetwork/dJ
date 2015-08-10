@@ -1,5 +1,5 @@
 function Look(){
-	this.first_run = function(params){
+	this.first_run = function(){
 		var $window  = $(window);
 		    $wrapper = $("div.wrapper");
 
@@ -8,7 +8,7 @@ function Look(){
 
 		var that     = this;
 
-		if (params && params.popup){
+		if (window.params && window.params.popup){
 			$window.on("resize", function(event){
 				that.wrapper_resize({
 					width:  $(this).width(),

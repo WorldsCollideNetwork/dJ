@@ -1,0 +1,6 @@
+{
+	"encryption": {
+		"algorithm": "blowfish",
+		"password": "SAMPLE_PASS_HERE"
+	}
+}

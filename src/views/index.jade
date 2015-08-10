@@ -17,9 +17,12 @@ html
 						div.logo
 							span(data-version=version) WCN dJ
 						ul.nav
-							li search
-							li drop
-							li veto
+							if logged_in
+								li search
+								li drop
+								li veto
+							else
+								li login
 					div.area
 						div.queue
 							div.none
@@ -33,8 +36,9 @@ html
 							ul.item_list
 					div.resize
 						i.fa.fa-angle-down
-					div.popup
-						i.fa.fa-arrows-alt
+					if logged_in
+						div.popup
+							i.fa.fa-arrows-alt
 		script(type="text/javascript", src="/js/queue_utils.js")
 		script(type="text/javascript", src="/js/queue.js")
 		script(type="text/javascript", src="/js/look.js")
