@@ -1,8 +1,12 @@
-var socket = io.connect("localhost");
+var socket    = io.connect("localhost"),
+    utils     = new Utils(),
+    logged_in = $("body").hasClass("logged_in");
 
 $(document).ready(function(){
 	var queue = new Queue(socket),
 	    look  = new Look();
+
+	new Buttons();
 
 	if (window.location.search != ""){
 		// using single quotes instead of double quotes for json parsing

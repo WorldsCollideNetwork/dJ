@@ -15,7 +15,7 @@ function Utils(){
 		                config.encryption.algorithm,
 		                config.encryption.password
 		    ),
-		    encrpyted = cipher.update(text, "utf8" "hex") + cipher.final("hex");
+		    encrpyted = cipher.update(text, "utf8", "hex") + cipher.final("hex");
 
 		return encrpyted;
 	};
