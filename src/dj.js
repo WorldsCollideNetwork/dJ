@@ -23,13 +23,27 @@ function dJ(io){
 	};
 
 	this.get = function(user){
-		for (var i in queue.list){
+		for (var i = 0; i < queue.list.length; ++i){
 			var request = queue.list[i];
 
 			if (request.user == user){
 				return request;
 			}
 		}
+
+		return undefined;
+	};
+
+	this.rem = function(user){
+		if (this.get(user)){
+			console.log(queue.list);
+			queue.list.splice(queue.list.indexOf(this.get(user)), 1);
+			console.log(queue.list);
+
+			return true;
+		}
+
+		return false;
 	};
 
 	this.add = function(socket, data){
@@ -37,20 +51,33 @@ function dJ(io){
 		require("./info").get(socket, data, function(err, info){
 			if (!err && !that.get(socket.user)){
 				queue.list.push(info);
+
+				console.log("ADDED REQUEST.");
+				console.log("- USER: " + info.user);
+				console.log("- LINK: " + info.link);
 			}
 
 			socket.emit("load", false);
 		});
 	};
 
-	this.rem = function(user){
-		if (this.get(user)){
-			queue.list.splice(queue.list.indexOf(this.get(user)), 1);
+	this.drop = function(socket){
+		socket.emit("load", true);
 
-			return true;
+		if (this.get(socket.user)){
+			if (queue.list[0] == this.get(socket.user)){
+				this.kill();
+			} else {
+				this.rem(socket.user);
+			}
+
+			this.refresh();
+
+			console.log("DROPPED REQUEST.");
+			console.log("- USER: " + socket.user);
 		}
 
-		return false;
+		socket.emit("load", false);
 	};
 
 	this.kill = function(){
@@ -68,12 +95,18 @@ function dJ(io){
 	setInterval(function(){
 		if (!queue.playing){
 			if (queue.list.length > 0){
+				console.log(queue.playing);
+				console.log(queue.process);
+				console.log(queue.timeout);
 				queue.playing = true;
 				queue.process = require("./utils").cmd(cmd, ["--new-window", queue.list[0].link]);
 				queue.timeout = setTimeout(function(){
 					that.kill();
 					that.refresh();
 				}, (queue.list[0].duration + 5 + queue.list[0].addition) * 1000);
+				console.log(queue.playing);
+				console.log(queue.process);
+				console.log(queue.timeout);
 			}
 		} else if (queue.list.length == 0){
 			queue.playing = false;

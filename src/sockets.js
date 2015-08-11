@@ -53,6 +53,12 @@ function Sockets(socketio, io){
 				dj.add(socket, data);
 			}
 		});
+
+		socket.on("drop", function(){
+			if (socket.user){
+				dj.drop(socket);
+			}
+		});
 	});
 }
 
