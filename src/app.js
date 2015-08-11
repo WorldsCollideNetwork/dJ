@@ -18,18 +18,31 @@ app.use(cookie());
 app.use(function(req, res, next){
 	res.locals.version = fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8");
 
-	if (req.cookies.user){
-		try {
-			require("./utils").decrypt(req.cookies.user);
-			res.locals.logged_in = true;
-		} catch (e){ }
+	if (req.cookies.user && require("./utils").decrypt(req.cookies.user)){
+		if (require("./utils").decrypt(req.cookies.user) == "Winneon"){
+			res.locals.own = true;
+		}
+
+		res.locals.logged_in = true;
 	}
 
 	next();
 });
 
-app.get("/", function(req, res){
-	res.render("index");
+app.get("*", function(req, res){
+	var url = req.url.split("?")[0];
+
+	if (url == "/"){
+		res.render("index");
+	} else {
+		url = url.replace("/", "");
+
+		if (res.locals.own){
+			res.render(url);
+		} else {
+			res.redirect("/");
+		}
+	}
 });
 
 require("./sockets")(socketio, io)

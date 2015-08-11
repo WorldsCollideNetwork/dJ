@@ -28,7 +28,11 @@ function Buttons(){
 		// popup button
 
 		$("div.popup").on("click", function(event){
-			popup();
+			window.open(
+				"http://localhost/?popup=1",
+				$("title"),
+				"width=" + window.w_width + ",height=" + window.w_height
+			);
 		});
 		
 		// custom title modal

@@ -2,6 +2,12 @@ var dj = require("./dj");
 
 function Sockets(socketio, io){
 	io.on("connection", function(socket){
+		var url = socket.handshake.headers.referer;
+
+		if (url.indexOf("/dj", url.length - 3) > -1){
+			global.tester = socket;
+		}
+
 		socket.on("login", function(data){
 			require("request")({
 				method: "POST",

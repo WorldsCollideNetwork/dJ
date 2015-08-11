@@ -21,14 +21,18 @@ function Utils(){
 	};
 
 	this.decrypt = function(text){
-		var config    = require("./CONFIG.json"),
-		    cipher    = crypto.createDecipher(
-		                config.encryption.algorithm,
-		                config.encryption.password
-		    ),
-		    decrpyted = cipher.update(text, "hex", "utf8") + cipher.final("utf8");
+		try {
+			var config    = require("./CONFIG.json"),
+			    cipher    = crypto.createDecipher(
+			                config.encryption.algorithm,
+			                config.encryption.password
+			    ),
+			    decrpyted = cipher.update(text, "hex", "utf8") + cipher.final("utf8");
 
-		return decrpyted;
+			return decrpyted;
+		} catch (e){
+			return undefined;
+		}
 	};
 
 	this.cookie = function(socket, data){
@@ -40,6 +44,12 @@ function Utils(){
 			value: data.value,
 			expires: "expires=" + date.toGMTString()
 		});
+	};
+
+	this.test_mp3 = function(url, callback){
+		global.tester.removeAllListeners("test");
+		global.tester.on("test", callback);
+		global.tester.emit("test", url);
 	};
 
 	return this;

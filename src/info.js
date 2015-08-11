@@ -56,9 +56,21 @@ function Info(data, callback){
 			if (err || data.items.length == 0){
 				callback(true);
 			} else {
+				var duration = data.items[0].contentDetails.duration.replace("PT", "");
+
+				duration = duration.replace("H", " * 3600) + (");
+				duration = duration.replace("M", " * 60) + (");
+
+				if (duration.indexOf("S") > -1){
+					duration = duration.replace("S", " * 1)");
+				} else {
+					duration = duration + "0)";
+				}
+
 				callback(false, {
 					title: data.items[0].snippet.title,
-					link: "https://www.youtube.com/watch?v=" + data.items[0].id
+					link: "https://www.youtube.com/watch?v=" + data.items[0].id,
+					duration: eval("(" + duration)
 				});
 			}
 		});
@@ -72,7 +84,8 @@ function Info(data, callback){
 			} else {
 				callback(false, {
 					title: data.title,
-					link: data.permalink_url
+					link: data.permalink_url,
+					duration: Math.round(data.duration / 1000)
 				});
 			}
 		});
@@ -83,14 +96,23 @@ function Info(data, callback){
 			} else {
 				callback(false, {
 					title: data.raw.title,
-					link: data.raw.url
+					link: data.raw.url,
+					duration: data.raw.duration
 				});
 			}
 		});
 	} else if (data.link.indexOf(".mp3", data.link.length - 4) > -1){
-		callback(false, {
-			title: data.title && data.title != "" ? data.title : data.link,
-			link: data.link
+		require("./utils").test_mp3(data.link, function(duration){
+			console.log(duration);
+			if (duration == null || duration == undefined || duration == NaN){
+				callback(true);
+			} else {
+				callback(false, {
+					title: data.title && data.title != "" ? data.title : data.link,
+					link: data.link,
+					duration: Math.round(duration)
+				});
+			}
 		});
 	} else {
 		callback(true);

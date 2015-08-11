@@ -11,15 +11,7 @@ function Look(){
 
 		window.w_width  = $wrapper.width();
 		window.w_height = $wrapper.height();
-	};
-
-	function popup(){
-		window.open(
-			"http://localhost/?popup=1",
-			$("title"),
-			"width=" + window.w_width + ",height=" + window.w_height
-		);
-	};
+	}
 
 	var $window  = $(window);
 	    $wrapper = $("div.wrapper");
