@@ -1,7 +1,7 @@
 {
-	"port": 80,
+	"port": 9093,
 	"encryption": {
-		"algorithm": "blowfish",
-		"password": "SAMPLE_PASS_HERE"
+		"algorithm": "aes256",
+		"password": "gjfoirnfuihgjirebgebf"
 	}
 }
