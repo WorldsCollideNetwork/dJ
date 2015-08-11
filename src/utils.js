@@ -57,9 +57,8 @@ function Utils(){
 	};
 
 	this.cmd = function(cmd, args){
-		var child = require("child_process").spawn(cmd, args),
-		    that  = this;
-
+		var child = require("child_process").spawn(cmd, args);
+		
 		child.on("error", function(err){
 			console.log("SHELL ERROR.");
 			console.log("- CODE: " + err.code);

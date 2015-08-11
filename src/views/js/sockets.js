@@ -17,6 +17,7 @@ function Sockets(){
 		for (item of data.queue){
 			queue_utils.add_item({
 				type: QUEUE_TYPE.QUEUE,
+				link: item.link,
 				title: item.title,
 				submitter: item.user,
 				secs: item.duration
@@ -28,6 +29,7 @@ function Sockets(){
 		for (item of data.playlist){
 			queue_utils.add_item({
 				type: QUEUE_TYPE.PLAYLIST,
+				link: item.link,
 				title: item.title,
 				submitter: item.user,
 				secs: item.duration

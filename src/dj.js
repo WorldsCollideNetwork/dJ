@@ -49,6 +49,7 @@ function dJ(io){
 		require("./info").get(socket, data, function(err, info){
 			if (!err && !that.get(socket.user)){
 				queue.list.push(info);
+				this.refresh();
 
 				console.log("ADDED REQUEST.");
 				console.log("- USER: " + info.user);
@@ -94,7 +95,7 @@ function dJ(io){
 		if (!queue.playing){
 			if (queue.list.length > 0){
 				queue.playing = true;
-				queue.process = require("./utils").cmd(cmd, ["--new-window", queue.list[0].link]);
+				queue.process = require("./utils").cmd(cmd, [queue.list[0].link]);
 				queue.timeout = setTimeout(function(){
 					that.kill();
 					that.refresh();

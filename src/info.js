@@ -104,7 +104,8 @@ function get(socket, data, callback){
 					user: socket.user,
 					title: data.title,
 					link: data.permalink_url,
-					duration: Math.round(data.duration / 1000)
+					duration: Math.round(data.duration / 1000),
+					addition: 0
 				});
 			}
 		});
@@ -118,7 +119,8 @@ function get(socket, data, callback){
 					user: socket.user,
 					title: data.raw.title,
 					link: data.raw.url,
-					duration: data.raw.duration
+					duration: data.raw.duration,
+					addition: 0
 				});
 			}
 		});
@@ -132,7 +134,8 @@ function get(socket, data, callback){
 					user: socket.user,
 					title: data.title && data.title != "" ? data.title : data.link,
 					link: data.link,
-					duration: Math.round(duration)
+					duration: Math.round(duration),
+					addition: 0
 				});
 			}
 		});
