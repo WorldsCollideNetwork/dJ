@@ -1,4 +1,4 @@
-var socket = io("localhost");
+var socket = io("localhost:" + $("span.text").text());
 
 socket.on("test", function(url){
 	var audio = $("<audio/>", { src: url }),
