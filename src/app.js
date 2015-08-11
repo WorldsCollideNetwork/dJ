@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, "views")));
 app.use(cookie());
 
 app.use(function(req, res, next){
+	res.locals.port = require("./CONFIG.json").port;
 	res.locals.version = fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8");
 
 	if (req.cookies.user && require("./utils").decrypt(req.cookies.user)){

@@ -19,6 +19,10 @@ body {
 	font-family: "Roboto";
 }
 
+span.port {
+	display: none;
+}
+
 div.content {
 	display: table;
 	width: 100%;

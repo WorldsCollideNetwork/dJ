@@ -3,7 +3,7 @@ console.log = function(data){
 	this.c_log("[" + require("./utils").timestamp() + "]: >", data)
 };
 
-var server = require("./app").listen(80, function(){
+var server = require("./app").listen(require("./CONFIG.json").port, function(){
 	var host = server.address().address,
 	    port = server.address().port;
 

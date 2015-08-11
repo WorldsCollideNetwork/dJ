@@ -1,4 +1,4 @@
-var socket    = io.connect("localhost"),
+var socket    = io.connect(window.location.hostname + ":" + $("span.port").text()),
     utils     = new Utils(),
     queue     = new Queue(socket);
     logged_in = $("body").hasClass("logged_in");
