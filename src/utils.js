@@ -20,7 +20,7 @@ function Utils(){
 		return encrpyted;
 	};
 
-	this.decrypt = function(){
+	this.decrypt = function(text){
 		var config    = require("./CONFIG.json"),
 		    cipher    = crypto.createDecipher(
 		                config.encryption.algorithm,
@@ -29,6 +29,17 @@ function Utils(){
 		    decrpyted = cipher.update(text, "hex", "utf8") + cipher.final("utf8");
 
 		return decrpyted;
+	};
+
+	this.cookie = function(socket, data){
+		var date = new Date();
+		date.setTime(date.getTime() + (data.secs * 1000)),
+
+		socket.emit("cookie", {
+			name: data.name,
+			value: data.value,
+			expires: "expires=" + date.toGMTString()
+		});
 	};
 
 	return this;
