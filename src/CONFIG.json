@@ -1,8 +1,8 @@
 {
-	"port": 80,
-	"login_request": "http://worldscolli.de/api/login",
+	"port": 9093,
+	"login_request": "http://localhost:9091/api/login",
 	"encryption": {
 		"algorithm": "blowfish",
-		"password": "SAMPLE_PASS_HERE"
+		"password": "bleh"
 	}
 }

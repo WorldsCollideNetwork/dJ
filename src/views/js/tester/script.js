@@ -2,23 +2,25 @@ var socket = io("localhost:" + $("span.port").text());
 
 socket.on("test", function(url){
 	var audio = $("<audio/>", { src: url }),
-	    cont  = true;
+	    inter = 0;
 
 	console.log("Verifying MP3 data...");
 
-	audio.on("canplaythrough", function(){
-		var duration = $(this)[0].duration;
+	var interval = setInterval(function(){
+		var duration = audio[0].duration;
 
-		console.log("MP3 data confirmed! Duration (in seconds): " + duration);
-		socket.emit("test", false, duration);
+		if (duration){
+			console.log("MP3 data confirmed! Duration (in seconds): " + duration);
+			socket.emit("test", false, duration);
 
-		cont = false;
-	});
-
-	setTimeout(function(){
-		if (cont){
+			clearInterval(interval)
+		} else if (inter == 5){
 			console.log("Unable to confirm MP3 data.");
 			socket.emit("test", true);
+
+			clearInterval(interval)
+		} else {
+			++inter;
 		}
-	}, 5000);
+	}, 1000);
 });
