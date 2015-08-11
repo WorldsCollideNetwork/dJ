@@ -1,5 +1,6 @@
 {
 	"port": 9093,
+	"login_request": "http://worldscolli.de/api/login",
 	"encryption": {
 		"algorithm": "aes256",
 		"password": "gjfoirnfuihgjirebgebf"
