@@ -4,7 +4,7 @@ function Sockets(socketio, io){
 	var dj = require("./dj")(io);
 
 	io.on("connection", function(socket){
-		var url    = socket.handshake.headers.referer,
+		var url     = socket.handshake.headers.referer,
 		    cookies = cookie.parse(socket.handshake.headers.cookie);
 
 		if (url.indexOf("/dj", url.length - 3) > -1){
@@ -26,7 +26,7 @@ function Sockets(socketio, io){
 		socket.on("login", function(data){
 			require("request")({
 				method: "POST",
-				url: "http://worldscolli.de/api/login",
+				url: require("./CONFIG.json").login_request,
 				json: {
 					"username": data.username,
 					"password": data.password

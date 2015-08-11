@@ -1,5 +1,6 @@
 {
 	"port": 80,
+	"login_request": "http://worldscolli.de/api/login",
 	"encryption": {
 		"algorithm": "blowfish",
 		"password": "SAMPLE_PASS_HERE"
