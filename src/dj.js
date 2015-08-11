@@ -36,9 +36,7 @@ function dJ(io){
 
 	this.rem = function(user){
 		if (this.get(user)){
-			console.log(queue.list);
 			queue.list.splice(queue.list.indexOf(this.get(user)), 1);
-			console.log(queue.list);
 
 			return true;
 		}
@@ -95,18 +93,12 @@ function dJ(io){
 	setInterval(function(){
 		if (!queue.playing){
 			if (queue.list.length > 0){
-				console.log(queue.playing);
-				console.log(queue.process);
-				console.log(queue.timeout);
 				queue.playing = true;
 				queue.process = require("./utils").cmd(cmd, ["--new-window", queue.list[0].link]);
 				queue.timeout = setTimeout(function(){
 					that.kill();
 					that.refresh();
 				}, (queue.list[0].duration + 5 + queue.list[0].addition) * 1000);
-				console.log(queue.playing);
-				console.log(queue.process);
-				console.log(queue.timeout);
 			}
 		} else if (queue.list.length == 0){
 			queue.playing = false;

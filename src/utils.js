@@ -64,6 +64,8 @@ function Utils(){
 			console.log("SHELL ERROR.");
 			console.log("- CODE: " + err.code);
 		});
+
+		return child;
 	};
 
 	this.socks = function(io){

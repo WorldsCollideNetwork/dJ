@@ -1,8 +1,0 @@
-{
-	"port": 9093,
-	"login_request": "http://localhost:9091/api/login",
-	"encryption": {
-		"algorithm": "blowfish",
-		"password": "bleh"
-	}
-}
