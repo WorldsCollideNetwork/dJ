@@ -7,7 +7,14 @@ youtube.authenticate({
 	key: "AIzaSyAhURyXN3_fuGxfnDUlMrLQc7JBKo0W168"
 });
 
-function Info(data, callback){
+var type = {
+	YOUTUBE:    0,
+	SOUNDCLOUD: 1,
+	VIMEO:      2,
+	RAW:        3
+};
+
+function get(socket, data, callback){
 	function parse_youtube_url(url){
 		var id  = undefined,
 		    pos = undefined;
@@ -56,7 +63,8 @@ function Info(data, callback){
 			if (err || data.items.length == 0){
 				callback(true);
 			} else {
-				var duration = data.items[0].contentDetails.duration.replace("PT", "");
+				var duration = data.items[0].contentDetails.duration.replace("PT", ""),
+				    addition = 0;
 
 				duration = duration.replace("H", " * 3600) + (");
 				duration = duration.replace("M", " * 60) + (");
@@ -67,10 +75,19 @@ function Info(data, callback){
 					duration = duration + "0)";
 				}
 
+				if (data.items[0].contentDetails.regionRestriction){
+					if (data.items[0].contentDetails.regionRestriction.blocked["DE"]){
+						addition = 10;
+					}
+				}
+
 				callback(false, {
+					type: type.YOUTUBE,
+					user: socket.user,
 					title: data.items[0].snippet.title,
 					link: "https://www.youtube.com/watch?v=" + data.items[0].id,
-					duration: eval("(" + duration)
+					duration: eval("(" + duration),
+					additon: addition
 				});
 			}
 		});
@@ -83,6 +100,8 @@ function Info(data, callback){
 				callback(true);
 			} else {
 				callback(false, {
+					type: type.SOUNDCLOUD,
+					user: socket.user,
 					title: data.title,
 					link: data.permalink_url,
 					duration: Math.round(data.duration / 1000)
@@ -95,6 +114,8 @@ function Info(data, callback){
 				callback(true);
 			} else {
 				callback(false, {
+					type: type.VIMEO,
+					user: socket.user,
 					title: data.raw.title,
 					link: data.raw.url,
 					duration: data.raw.duration
@@ -102,12 +123,13 @@ function Info(data, callback){
 			}
 		});
 	} else if (data.link.indexOf(".mp3", data.link.length - 4) > -1){
-		require("./utils").test_mp3(data.link, function(duration){
-			console.log(duration);
-			if (duration == null || duration == undefined || duration == NaN){
+		require("./utils").test_mp3(data.link, function(err, duration){
+			if (err){
 				callback(true);
 			} else {
 				callback(false, {
+					type: type.RAW,
+					user: socket.user,
 					title: data.title && data.title != "" ? data.title : data.link,
 					link: data.link,
 					duration: Math.round(duration)
@@ -119,4 +141,7 @@ function Info(data, callback){
 	}
 }
 
-module.exports = Info;
+module.exports = {
+	type: type,
+	get: get
+};

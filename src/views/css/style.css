@@ -214,11 +214,12 @@ ul.item_list > li div.details {
 	line-height: .9rem;
 }
 
+ul.item_list > li div.details > a,
 ul.item_list > li div.details > span {
 	display: block;
 }
 
-ul.item_list > li div.details > span.title {
+ul.item_list > li div.details > a.title {
 	position: relative;
 	top: 3px;
 	overflow: hidden;

@@ -18,8 +18,8 @@ function Sockets(){
 			queue_utils.add_item({
 				type: QUEUE_TYPE.QUEUE,
 				title: item.title,
-				submitter: item.submitter,
-				duration: item.duration
+				submitter: item.user,
+				secs: item.duration
 			});
 		}
 
@@ -29,10 +29,13 @@ function Sockets(){
 			queue_utils.add_item({
 				type: QUEUE_TYPE.PLAYLIST,
 				title: item.title,
-				submitter: item.submitter,
-				duration: item.duration
+				submitter: item.user,
+				secs: item.duration
 			});
 		}
+
+		queue_utils.check_none(QUEUE_TYPE.QUEUE);
+		queue_utils.check_none(QUEUE_TYPE.PLAYLIST);
 	});
 
 	return this;

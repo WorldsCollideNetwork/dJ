@@ -10,7 +10,7 @@ socket.on("test", function(url){
 		var duration = $(this)[0].duration;
 
 		console.log("MP3 data confirmed! Duration (in seconds): " + duration);
-		socket.emit("test", duration);
+		socket.emit("test", false, duration);
 
 		cont = false;
 	});
@@ -18,7 +18,7 @@ socket.on("test", function(url){
 	setTimeout(function(){
 		if (cont){
 			console.log("Unable to confirm MP3 data.");
-			socket.emit("test", NaN);
+			socket.emit("test", true);
 		}
 	}, 5000);
 });

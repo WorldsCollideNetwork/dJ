@@ -1,6 +1,6 @@
-function Queue(socket){
-	var queue_utils = new QueueUtils("div.queue", "div.playlist");
+var queue_utils = new QueueUtils("div.queue", "div.playlist");
 
+function Queue(socket){
 	this.add_request = function(link, title){
 		socket.emit("add", {
 			link: link,
@@ -8,20 +8,9 @@ function Queue(socket){
 		});
 	};
 
-	var that = this;
-
-	$(document).on("paste", function(event){
-		var text = (event.originalEvent || event).clipboardData.getData('text/plain');
-
-		if (text.endsWith(".mp3")){
-			window.temp_url = text;
-			utils.modal("title");
-		} else {
-			that.add_request(text);
-		}
-
-		event.preventDefault();
-	});
+	this.drop_request = function(){
+		socket.emit("drop");
+	};
 
 	return this;
 }

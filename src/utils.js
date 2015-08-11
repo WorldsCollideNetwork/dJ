@@ -47,9 +47,36 @@ function Utils(){
 	};
 
 	this.test_mp3 = function(url, callback){
-		global.tester.removeAllListeners("test");
-		global.tester.on("test", callback);
-		global.tester.emit("test", url);
+		if (global.tester){
+			global.tester.removeAllListeners("test");
+			global.tester.on("test", callback);
+			global.tester.emit("test", url);
+		} else {
+			callback(true);
+		}
+	};
+
+	this.cmd = function(cmd, args){
+		var child = require("child_process").spawn(cmd, args),
+		    that  = this;
+
+		child.on("error", function(err){
+			console.log("SHELL ERROR.");
+			console.log("- CODE: " + err.code);
+		});
+	};
+
+	this.socks = function(io){
+		var res = [],
+		    ns  = io.of("/");
+
+		if (ns){
+			for (var id in ns.connected){
+				res.push(ns.connected[id]);
+			}
+		}
+
+		return res;
 	};
 
 	return this;

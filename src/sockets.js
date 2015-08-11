@@ -1,12 +1,27 @@
-var dj = require("./dj");
+var cookie = require("cookie");
 
 function Sockets(socketio, io){
+	var dj = require("./dj")(io);
+
 	io.on("connection", function(socket){
-		var url = socket.handshake.headers.referer;
+		var url    = socket.handshake.headers.referer,
+		    cookies = cookie.parse(socket.handshake.headers.cookie);
 
 		if (url.indexOf("/dj", url.length - 3) > -1){
 			global.tester = socket;
 		}
+
+		if (cookies.user && require("./utils").decrypt(cookies.user)){
+			socket.user = require("./utils").decrypt(cookies.user);
+		}
+
+		dj.refresh();
+
+		socket.on("disconnect", function(){
+			if (global.tester == socket){
+				global.tester = undefined;
+			}
+		});
 
 		socket.on("login", function(data){
 			require("request")({
@@ -34,7 +49,9 @@ function Sockets(socketio, io){
 		});
 
 		socket.on("add", function(data){
-			dj.add(data);
+			if (socket.user){
+				dj.add(socket, data);
+			}
 		});
 	});
 }

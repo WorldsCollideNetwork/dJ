@@ -10,15 +10,30 @@ function Buttons(){
 
 	if (logged_in){
 		$("li[name='search']").on("click", function(event){
-
+			// TODO add search calls
 		});
 
 		$("li[name='drop']").on("click", function(event){
-			
+			queue.drop_request();
 		});
 
 		$("li[name='veto']").on("click", function(event){
-			
+			// TODO add veto calls
+		});
+
+		var that = this;
+
+		$(document).on("paste", function(event){
+			var text = (event.originalEvent || event).clipboardData.getData('text/plain');
+
+			if (text.endsWith(".mp3")){
+				window.temp_url = text;
+				utils.modal("title");
+			} else {
+				queue.add_request(text);
+			}
+
+			event.preventDefault();
 		});
 	}
 

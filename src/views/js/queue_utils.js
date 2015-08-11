@@ -42,7 +42,19 @@ function QueueUtils(queue, playlist){
 	};
 
 	this.clear_items = function(type){
-		$(selector(data.type)).children().remove();
+		$(selector(type)).children().remove();
+	};
+
+	this.check_none = function(type){
+		var $selector = $(selector(type));
+
+		if ($selector.children().length == 0){
+			$selector.hide();
+			$selector.parent().find("div.none").show();
+		} else {
+			$selector.show();
+			$selector.parent().find("div.none").hide();
+		}
 	};
 
 	this.add_item = function(data){
@@ -54,12 +66,14 @@ function QueueUtils(queue, playlist){
 
 		var $i_icon      = $("<i/>",    { "class": "fa"        });
 
-		var $title       = $("<span/>", { "class": "title"     }).text(data.title),
+		var $title       = $("<a/>",    { "class": "title"     }).text(data.title),
 		    $submitter   = $("<span/>", { "class": "submitter" }).text(data.submitter);
 
 		var $d_duration  = $("<div/>"),
 		    $dd_duration = $("<div/>"),
 		    $s_duration  = $("<span>").text(this.time(data.secs));
+
+		$title.attr("href", data.link);
 
 		$i_icon.addClass($selector.children().length == 0 ? "fa-play" : "fa-angle-up");
 		$icon.append($i_icon);
