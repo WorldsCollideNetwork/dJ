@@ -25,13 +25,25 @@ function Buttons(){
 	// modal buttons
 
 	if (logged_in){
-		// TODO place add modal event handlers here
+		// custom title modal
+
+		$("input.title").on("keydown", function(event){
+			if (event.which == 13){
+				queue.add_request(window.temp_url, $(this).val());
+				utils.clear_modal("title");
+				
+				window.temp_url = undefined;
+			}
+		});
 	} else {
+		// login modal
+
 		$("input.username, input.password").on("keydown", function(event){
 			if (event.which == 13){
 				utils.login();
 			}
 		});
+
 		$("button[name='login']").on("click", function(event){
 			utils.login();
 		});

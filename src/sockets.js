@@ -24,6 +24,10 @@ function Sockets(socketio, io){
 				}
 			});
 		});
+
+		socket.on("add", function(data){
+			console.log(data);
+		});
 	});
 }
 

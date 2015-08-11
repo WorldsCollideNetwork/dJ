@@ -1,44 +1,5 @@
 function Look(){
-	this.first_run = function(){
-		var $window  = $(window);
-		    $wrapper = $("div.wrapper");
-
-		var width    = $window.width(),
-		    height   = $window.height();
-
-		var that     = this;
-
-		if (window.params && window.params.popup){
-			$window.on("resize", function(event){
-				that.wrapper_resize({
-					width:  $(this).width(),
-					height: $(this).height()
-				});
-			});
-
-			that.wrapper_resize({
-				width:  width,
-				height: height
-			});
-		} else {
-			$wrapper.draggable();
-			$wrapper.resizable();
-
-			$wrapper.on("resize", function(event, ui){
-				that.wrapper_resize();
-			});
-
-			this.wrapper_resize();
-		}
-
-		// register events
-
-		$("div.popup").on("click", function(event){
-			that.popup();
-		});
-	};
-
-	this.wrapper_resize = function(data){
+	function wrapper_resize(data){
 		var $wrapper = $("div.wrapper");
 
 		if (data){
@@ -52,13 +13,48 @@ function Look(){
 		window.w_height = $wrapper.height();
 	};
 
-	this.popup = function(){
+	function popup(){
 		window.open(
 			"http://localhost/?popup=1",
 			$("title"),
 			"width=" + window.w_width + ",height=" + window.w_height
 		);
 	};
+
+	var $window  = $(window);
+	    $wrapper = $("div.wrapper");
+
+	var width    = $window.width(),
+	    height   = $window.height();
+
+	if (window.params && window.params.popup){
+		$window.on("resize", function(event){
+			wrapper_resize({
+				width:  $(this).width(),
+				height: $(this).height()
+			});
+		});
+
+		wrapper_resize({
+			width:  width,
+			height: height
+		});
+	} else {
+		$wrapper.draggable();
+		$wrapper.resizable();
+
+		$wrapper.on("resize", function(event, ui){
+			that.wrapper_resize();
+		});
+
+		wrapper_resize();
+	}
+
+	// register events
+
+	$("div.popup").on("click", function(event){
+		popup();
+	});
 
 	return this;
 }

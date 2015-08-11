@@ -20,10 +20,15 @@ function Utils(){
 	};
 
 	this.login = function(){
-		socket.emit("login", {
-			username: $("input.username").val(),
-			password: $("input.password").val()
-		});
+		var $username = $("input.username"),
+		    $password = $("input.password");
+
+		if ($username.val() != "" && $password.val() != ""){
+			socket.emit("login", {
+				username: $username.val(),
+				password: $password.val()
+			});
+		}
 	};
 
 	return this;
