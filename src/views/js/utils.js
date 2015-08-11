@@ -17,6 +17,8 @@ function Utils(){
 	this.clear_modal = function(name){
 		$("div.wrapper").removeClass("modal");
 		$("div.screen, div.modal.modal-" + name).removeClass("visible");
+
+		$("div.modal.modal-" + name).find("input").val("");
 	};
 
 	this.login = function(){

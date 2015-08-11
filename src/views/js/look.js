@@ -50,11 +50,5 @@ function Look(){
 		wrapper_resize();
 	}
 
-	// register events
-
-	$("div.popup").on("click", function(event){
-		popup();
-	});
-
 	return this;
 }

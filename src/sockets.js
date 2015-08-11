@@ -1,3 +1,5 @@
+var dj = require("./dj");
+
 function Sockets(socketio, io){
 	io.on("connection", function(socket){
 		socket.on("login", function(data){
@@ -26,7 +28,7 @@ function Sockets(socketio, io){
 		});
 
 		socket.on("add", function(data){
-			console.log(data);
+			dj.add(data);
 		});
 	});
 }

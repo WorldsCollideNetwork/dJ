@@ -25,15 +25,35 @@ function Buttons(){
 	// modal buttons
 
 	if (logged_in){
+		// popup button
+
+		$("div.popup").on("click", function(event){
+			popup();
+		});
+		
 		// custom title modal
+
+		function callback(){
+			var title    = undefined,
+			    temp_url = undefined,
+			    $input   = $("input.title");
+
+			if ($input.val() != ""){
+				title = $input.val();
+			}
+
+			queue.add_request(window.temp_url, title);
+			utils.clear_modal("title");
+		}
 
 		$("input.title").on("keydown", function(event){
 			if (event.which == 13){
-				queue.add_request(window.temp_url, $(this).val());
-				utils.clear_modal("title");
-				
-				window.temp_url = undefined;
+				callback();
 			}
+		});
+
+		$("button[name='add request']").on("click", function(event){
+			callback();
 		});
 	} else {
 		// login modal
