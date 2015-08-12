@@ -4,6 +4,8 @@ function Sockets(socketio, io){
 	var dj = require("./dj")(io);
 
 	io.on("connection", function(socket){
+		console.log(socket.handshake.headers.cookie);
+
 		var url     = socket.handshake.headers.referer,
 		    cookies = cookie.parse(socket.handshake.headers.cookie);
 
