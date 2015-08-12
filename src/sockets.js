@@ -4,18 +4,21 @@ function Sockets(socketio, io){
 	var dj = require("./dj")(io);
 
 	io.on("connection", function(socket){
-		console.log(socket.handshake.headers.cookie);
-
-		var url     = socket.handshake.headers.referer,
-		    cookies = cookie.parse(socket.handshake.headers.cookie);
+		var url     = socket.handshake.headers.referer;
 
 		if (url.indexOf("/dj", url.length - 3) > -1){
 			global.tester = socket;
 		}
 
-		if (cookies.user && require("./utils").decrypt(cookies.user)){
-			socket.user = require("./utils").decrypt(cookies.user);
-			socket.staff = cookies.staff;
+		var cookies = socket.handshake.headers.cookie;
+
+		if (cookies){
+			cookies = cookie.parse(cookies);
+
+			if (cookies.user && require("./utils").decrypt(cookies.user)){
+				socket.user = require("./utils").decrypt(cookies.user);
+				socket.staff = cookies.staff;
+			}
 		}
 
 		dj.refresh();
