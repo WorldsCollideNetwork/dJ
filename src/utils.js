@@ -56,7 +56,7 @@ function Utils(){
 		}
 	};
 
-	this.cmd = function(cmd, args){
+	this.cmd = function(cmd, args, end){
 		var child = require("child_process").spawn(cmd, args),
 		    that  = this;
 
