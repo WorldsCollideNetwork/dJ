@@ -82,7 +82,13 @@ function dJ(io){
 	};
 
 	this.veto = function(socket){
+		if (socket.staff && queue.playing){
+			this.kill();
+			this.refresh();
 
+			console.log("VETOED REQUEST.");
+			console.log("- USER: " + socket.user);
+		}
 	};
 
 	this.kill = function(){

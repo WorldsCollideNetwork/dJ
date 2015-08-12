@@ -130,7 +130,7 @@ function get(socket, data, callback){
 					type: type.VIMEO,
 					user: socket.user,
 					title: data.raw.title,
-					link: data.raw.url,
+					link: "https://player.vimeo.com/video/" + parse_vimeo_url(data.link) + "?autoplay=1",
 					duration: data.raw.duration,
 					addition: 0
 				});

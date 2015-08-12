@@ -13,6 +13,7 @@ function Sockets(socketio, io){
 
 		if (cookies.user && require("./utils").decrypt(cookies.user)){
 			socket.user = require("./utils").decrypt(cookies.user);
+			socket.staff = cookies.staff;
 		}
 
 		dj.refresh();
@@ -42,6 +43,12 @@ function Sockets(socketio, io){
 							secs: (60 * 60 * 24 * 365 * 20) // 20 years
 						});
 
+						utils.cookie(socket, {
+							name: "staff",
+							value: body.data.staff,
+							secs: (60 * 60 * 24 * 365 * 20) // 20 years
+						});
+
 						socket.emit("reload");
 					}
 				}
@@ -57,6 +64,12 @@ function Sockets(socketio, io){
 		socket.on("drop", function(){
 			if (socket.user){
 				dj.drop(socket);
+			}
+		});
+
+		socket.on("veto", function(){
+			if (socket.user){
+				dj.veto(socket);
 			}
 		});
 	});
