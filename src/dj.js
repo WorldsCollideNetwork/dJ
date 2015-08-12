@@ -3,7 +3,9 @@ function dJ(io){
 		list:    [],
 		playing: false,
 		process: undefined,
-		timeout: undefined
+		timeout: undefined,
+		count:   0,
+		count_i: undefined
 	};
 
 	var that = this,
@@ -83,10 +85,12 @@ function dJ(io){
 		if (queue.process && queue.timeout){
 			queue.process.kill();
 			clearTimeout(queue.timeout);
+			clearInterval(queue.count_i);
 			this.rem(queue.list[0].user);
 
 			queue.process = undefined;
 			queue.timeout = undefined;
+			queue.count_i = undefined;
 			queue.playing = false;
 		}
 	};
@@ -95,12 +99,21 @@ function dJ(io){
 		if (!queue.playing){
 			if (queue.list.length > 0){
 				queue.playing = true;
+				queue.count = queue.list[0].duration;
 				queue.process = require("./utils").cmd(cmd, [queue.list[0].link]);
+
 				queue.timeout = setTimeout(function(){
 					that.kill();
 					that.refresh();
 				}, (queue.list[0].duration + 5 + queue.list[0].addition) * 1000);
-			}
+
+				queue.count_i = setInterval(function(){
+					if (queue.count > 0){
+						--queue.count;
+						io.emit("countdown", queue.count);
+					}
+				}, 1000);
+		}
 		} else if (queue.list.length == 0){
 			queue.playing = false;
 		}

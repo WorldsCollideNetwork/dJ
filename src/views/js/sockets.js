@@ -7,6 +7,10 @@ function Sockets(){
 		}
 	});
 
+	socket.on("countdown", function(count){
+		queue_utils.countdown(count);
+	});
+
 	socket.on("reload", function(){
 		window.location.reload();
 	});
@@ -38,6 +42,8 @@ function Sockets(){
 
 		queue_utils.check_none(QUEUE_TYPE.QUEUE);
 		queue_utils.check_none(QUEUE_TYPE.PLAYLIST);
+
+		queue_utils.check_countdown();
 	});
 
 	return this;

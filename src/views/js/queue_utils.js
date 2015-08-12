@@ -4,6 +4,9 @@ var QUEUE_TYPE = {
 };
 
 function QueueUtils(queue, playlist){
+	var count   = false,
+	    count_i = undefined;
+
 	function selector(type){
 		switch (type){
 			case QUEUE_TYPE.QUEUE:
@@ -54,6 +57,14 @@ function QueueUtils(queue, playlist){
 		} else {
 			$selector.show();
 			$selector.parent().find("div.none").hide();
+		}
+	};
+
+	this.countdown = function(count){
+		var $selector = $(selector(QUEUE_TYPE.QUEUE));
+
+		if ($selector.children().length > 0){
+			$($selector.children()[0]).find("div.duration span").text(this.time(count));
 		}
 	};
 
