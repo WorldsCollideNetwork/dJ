@@ -44,7 +44,7 @@ function Buttons(){
 
 		$("div.popup").on("click", function(event){
 			window.open(
-				"http://localhost/?popup=1",
+				"http://" + window.location.hostname + "/?popup=1",
 				$("title"),
 				"width=" + window.w_width + ",height=" + window.w_height
 			);
