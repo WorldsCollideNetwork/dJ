@@ -14,7 +14,7 @@ function Utils(){
 
 			setTimeout(function(){
 				$("dv.modal.modal-" + name).find("input").focus();
-			}, 500);
+			}, 1000);
 		}
 	};
 
