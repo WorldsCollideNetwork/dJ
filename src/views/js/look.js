@@ -36,7 +36,7 @@ function Look(){
 		$wrapper.resizable();
 
 		$wrapper.on("resize", function(event, ui){
-			that.wrapper_resize();
+			wrapper_resize();
 		});
 
 		wrapper_resize();
