@@ -74,6 +74,7 @@ function QueueUtils(queue, playlist){
 		    $s_duration  = $("<span>").text(this.time(data.secs));
 
 		$title.attr("href", data.link);
+		$title.attr("target", "_blank");
 
 		$i_icon.addClass($selector.children().length == 0 ? "fa-play" : "fa-angle-up");
 		$icon.append($i_icon);
