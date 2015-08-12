@@ -87,7 +87,7 @@ function get(socket, data, callback){
 					title: data.items[0].snippet.title,
 					link: "https://www.youtube.com/watch?v=" + data.items[0].id,
 					duration: eval("(" + duration),
-					additon: addition
+					addition: addition
 				});
 			}
 		});
