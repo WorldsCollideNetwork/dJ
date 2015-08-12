@@ -42,8 +42,6 @@ function Sockets(){
 
 		queue_utils.check_none(QUEUE_TYPE.QUEUE);
 		queue_utils.check_none(QUEUE_TYPE.PLAYLIST);
-
-		queue_utils.check_countdown();
 	});
 
 	return this;
