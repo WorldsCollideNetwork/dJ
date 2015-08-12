@@ -233,7 +233,7 @@ ul.item_list > li div.details > a.title {
 	overflow: hidden;
 	color: inherit;
 	font-size: 1.25rem;
-	line-height: 1.25rem;
+	line-height: 1.5rem;
 	text-decoration: none;
 	text-overflow: ellipsis;
 	white-space: nowrap;
