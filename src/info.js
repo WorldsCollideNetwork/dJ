@@ -79,11 +79,11 @@ function get(socket, data, callback){
 
 				if (data.items[0].contentDetails.regionRestriction){
 					if (data.items[0].contentDetails.regionRestriction.blocked){
-						if ($.inArray("DE", data.items[0].contentDetails.regionRestriction.blocked) > -1){
+						if (data.items[0].contentDetails.regionRestriction.blocked.indexOf("DE") > -1){
 							cont = true;
 						}
 					} else if (data.items[0].contentDetails.regionRestriction.allowed){
-						if ($.inArray("DE", data.items[0].contentDetails.regionRestriction.allowed) == -1){
+						if (data.items[0].contentDetails.regionRestriction.allowed.indexOf("DE") == 0){
 							cont = true;
 						}
 					}
