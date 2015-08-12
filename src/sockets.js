@@ -4,7 +4,7 @@ function Sockets(socketio, io){
 	var dj = require("./dj")(io);
 
 	io.on("connection", function(socket){
-		var url     = socket.handshake.headers.referer;
+		var url = socket.handshake.headers.referer;
 
 		if (url.indexOf("/dj", url.length - 3) > -1){
 			global.tester = socket;
