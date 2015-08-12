@@ -130,6 +130,10 @@ header ul.nav > li:before {
 	content: attr(name);
 }
 
+header ul.nav > li[name="search"]:hover:before {
+	content: "coming soon";
+}
+
 header ul.nav > li:last-child {
 	margin-right: 0px;
 }
