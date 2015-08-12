@@ -8,11 +8,13 @@ function Utils(){
 			$("div.wrapper").addClass("modal");
 			$("div.screen, div.modal.modal-" + name).addClass("visible");
 
-			$("div.modal.modal-" + name).find("input").focus();
-
 			$("div.screen").on("click", function(event){
 				that.clear_modal(name);
 			});
+
+			setTimeout(function(){
+				$("div.modal.modal-" + name).find("input").focus();
+			}, 1500);
 		}
 	};
 
