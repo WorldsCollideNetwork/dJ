@@ -18,7 +18,7 @@ function Buttons(){
 		});
 
 		$("li[name='veto']").on("click", function(event){
-			// TODO add veto calls
+			queue.veto_request();
 		});
 
 		var that = this;

@@ -12,5 +12,9 @@ function Queue(socket){
 		socket.emit("drop");
 	};
 
+	this.veto_request = function(){
+		socket.emit("veto");
+	};
+
 	return this;
 }
