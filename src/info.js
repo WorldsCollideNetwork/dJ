@@ -122,6 +122,8 @@ function get(socket, data, callback){
 			}
 		});
 	} else if (data.link.indexOf("vimeo.com") > -1){
+		var link = data.link;
+
 		vimeo(parse_vimeo_url(data.link), function(err, data){
 			if (err){
 				callback(true);
@@ -130,7 +132,7 @@ function get(socket, data, callback){
 					type: type.VIMEO,
 					user: socket.user,
 					title: data.raw.title,
-					link: "https://player.vimeo.com/video/" + parse_vimeo_url(data.link) + "?autoplay=1",
+					link: "https://player.vimeo.com/video/" + parse_vimeo_url(link) + "?autoplay=1",
 					duration: data.raw.duration,
 					addition: 0
 				});
