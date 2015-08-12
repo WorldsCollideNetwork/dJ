@@ -75,10 +75,22 @@ function get(socket, data, callback){
 					duration = duration + "0)";
 				}
 
+				var cont = false;
+
 				if (data.items[0].contentDetails.regionRestriction){
-					if (data.items[0].contentDetails.regionRestriction.blocked["DE"]){
-						addition = 10;
+					if (data.items[0].contentDetails.regionRestriction.blocked){
+						if ($.inArray("DE", data.items[0].contentDetails.regionRestriction.blocked) > -1){
+							cont = true;
+						}
+					} else if (data.items[0].contentDetails.regionRestriction.allowed){
+						if ($.inArray("DE", data.items[0].contentDetails.regionRestriction.allowed) == -1){
+							cont = true;
+						}
 					}
+				}
+
+				if (cont){
+					addition = 10;
 				}
 
 				callback(false, {

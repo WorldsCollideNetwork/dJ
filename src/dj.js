@@ -81,6 +81,10 @@ function dJ(io){
 		socket.emit("load", false);
 	};
 
+	this.veto = function(socket){
+
+	};
+
 	this.kill = function(){
 		if (queue.process && queue.timeout){
 			queue.process.kill();
