@@ -37,6 +37,9 @@ function Sockets(socketio, io){
 		// for seekrit debugging purposes
 		socket.on("reload", function(){
 			if (socket.user && socket.staff){
+				console.log("CLIENT RELOAD INITIATED.");
+				console.log("- USER: " + socket.user);
+
 				io.emit("reload");
 			}
 		});
