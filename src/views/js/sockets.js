@@ -15,6 +15,10 @@ function Sockets(){
 		window.location.reload();
 	});
 
+	socket.on("message", function(data){
+		utils.message(data.message, data.err);
+	});
+
 	socket.on("refresh", function(data){
 		queue_utils.clear_items(QUEUE_TYPE.QUEUE);
 

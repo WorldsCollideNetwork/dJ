@@ -38,7 +38,12 @@ function Sockets(socketio, io){
 					"password": data.password
 				}
 			}, function(err, res, body){
-				if (!err && res.statusCode == 200){
+				if (err || res.statusCode != 200){
+					socket.emit("message", {
+						message: "An error occurred connecting to worldscolli.de!",
+						err: true
+					});
+				} else {
 					if (body.success){
 						var utils = require("./utils");
 
@@ -55,6 +60,11 @@ function Sockets(socketio, io){
 						});
 
 						socket.emit("reload");
+					} else {
+						socket.emit("message", {
+							message: "Invalid credentials!",
+							err: true
+						});
 					}
 				}
 			});

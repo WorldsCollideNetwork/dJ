@@ -6,6 +6,7 @@ html
 		title WCN dJ #{version}
 		link(rel="stylesheet", type="text/css", href="/css/style.css")
 		link(rel="stylesheet", type="text/css", href="/css/modals.css")
+		link(rel="stylesheet", type="text/css", href="/css/animations.css")
 		link(rel="stylesheet", type="text/css", href="/css/overrides.css")
 		script(type="text/javascript", src="//code.jquery.com/jquery-2.1.4.min.js")
 		script(type="text/javascript", src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js")
@@ -38,9 +39,6 @@ html
 							ul.item_list
 					div.resize
 						i.fa.fa-angle-down
-					if logged_in
-						div.popup
-							i.fa.fa-arrows-alt
 					div.modal.modal-login
 						input.username(type="text", placeholder="Username")
 						input.password(type="password", placeholder="Password")
@@ -48,6 +46,9 @@ html
 					div.modal.modal-title
 						input.title(type="text", placeholder="Custom Title")
 						button(name="add request")
+		if logged_in
+			div.popup
+				i.fa.fa-arrows-alt
 		div.screen
 		span.port= port
 		script(type="text/javascript", src="/js/utils.js")

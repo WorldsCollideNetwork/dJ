@@ -20,6 +20,8 @@ function Look(){
 	    height   = $window.height();
 
 	if (window.params && window.params.popup){
+		$("body").attr("popup", "");
+		
 		$window.on("resize", function(event){
 			wrapper_resize({
 				width:  $(this).width(),

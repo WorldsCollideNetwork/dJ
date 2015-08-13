@@ -49,9 +49,22 @@ function dJ(io){
 	this.add = function(socket, data){
 		socket.emit("load", true);
 		require("./info").get(socket, data, function(err, info){
-			if (!err && !that.get(socket.user)){
+			if (err){
+				socket.emit("message", {
+					message: "An error occurred while parsing your link!",
+					err: true
+				});
+			} else if (that.get(socket.user)){
+				socket.emit("message", {
+					message: "You have already requested a song!"
+				});
+			} else {
 				queue.list.push(info);
 				this.refresh();
+
+				socket.emit("message", {
+					message: "Your request has been added!"
+				});
 
 				console.log("ADDED REQUEST.");
 				console.log("- USER: " + info.user);
@@ -74,8 +87,17 @@ function dJ(io){
 
 			this.refresh();
 
+			socket.emit("message", {
+				message: "Your request has been dropped!"
+			});
+
 			console.log("DROPPED REQUEST.");
 			console.log("- USER: " + socket.user);
+		} else {
+			socket.emit("message", {
+				message: "You have yet to add a request!",
+				err: true
+			});
 		}
 
 		socket.emit("load", false);
@@ -88,6 +110,16 @@ function dJ(io){
 
 			console.log("VETOED REQUEST.");
 			console.log("- USER: " + socket.user);
+		} else if (!socket.staff){
+			socket.emit("message", {
+				message: "You are not staff!",
+				err: true
+			});
+		} else {
+			socket.emit("message", {
+				message: "There is no request to veto!",
+				err: true
+			});
 		}
 	};
 

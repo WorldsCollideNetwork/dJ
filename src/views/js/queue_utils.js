@@ -75,9 +75,13 @@ function QueueUtils(queue, playlist){
 		    $details     = $("<div/>",  { "class": "details"   }),
 		    $duration    = $("<div/>",  { "class": "duration"  });
 
-		var $i_icon      = $("<i/>",    { "class": "fa"        });
+		var $d_icon      = $("<div/>"),
+		    $dd_icon     = $("<div/>"),
+		    $i_icon      = $("<i/>",    { "class": "fa"        });
 
-		var $title       = $("<a/>",    { "class": "title"     }).text(data.title),
+		var $d_details   = $("<div/>"),
+		    $dd_details  = $("<div/>"),
+		    $title       = $("<a/>",    { "class": "title"     }).text(data.title),
 		    $submitter   = $("<span/>", { "class": "submitter" }).text(data.submitter);
 
 		var $d_duration  = $("<div/>"),
@@ -89,10 +93,16 @@ function QueueUtils(queue, playlist){
 		$title.attr("target", "_blank");
 
 		$i_icon.addClass($selector.children().length == 0 ? "fa-play" : "fa-angle-up");
-		$icon.append($i_icon);
+		$i_icon.css("font-size", $selector.children().length == 0 ? "" : "2.75rem");
+		$dd_icon.append($i_icon);
+		$d_icon.append($dd_icon);
+		$icon.append($d_icon);
 
-		$details.append($title);
-		$details.append($submitter);
+
+		$dd_details.append($title);
+		$dd_details.append($submitter);
+		$d_details.append($dd_details);
+		$details.append($d_details);
 
 		$dd_duration.append($s_duration);
 		$d_duration.append($dd_duration);

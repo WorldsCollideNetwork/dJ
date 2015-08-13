@@ -9,6 +9,15 @@ function Buttons(){
 	});
 
 	if (logged_in){
+		// popup button
+		$("div.popup").on("click", function(event){
+			window.open(
+				"http://" + window.location.hostname + "/?popup=1",
+				$("title"),
+				"width=" + window.w_width + ",height=" + window.w_height
+			);
+		});
+
 		$("li[name='search']").on("click", function(event){
 			// TODO add search calls
 		});
@@ -40,16 +49,6 @@ function Buttons(){
 	// modal buttons
 
 	if (logged_in){
-		// popup button
-
-		$("div.popup").on("click", function(event){
-			window.open(
-				"http://" + window.location.hostname + "/?popup=1",
-				$("title"),
-				"width=" + window.w_width + ",height=" + window.w_height
-			);
-		});
-		
 		// custom title modal
 
 		function callback(){

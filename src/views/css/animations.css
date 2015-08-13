@@ -1,0 +1,38 @@
+div.message {
+	-webkit-animation-name: message;
+	-webkit-animation-duration: 5s;
+	animation-name: message;
+	animation-duration: 3s;
+}
+
+@-webkit-keyframes message {
+	15% {
+		top: 50px;
+	}
+
+	90% {
+		top: 50px;
+		opacity: 1;
+	}
+
+	100% {
+		top: 50px;
+		opacity: 0;
+	}
+}
+
+@keyframes message {
+	15% {
+		top: 50px;
+	}
+
+	90% {
+		top: 50px;
+		opacity: 1;
+	}
+
+	100% {
+		top: 50px;
+		opacity: 0;
+	}
+}
