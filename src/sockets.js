@@ -17,8 +17,6 @@ function Sockets(socketio, io){
 
 			if (cookies.user && require("./utils").decrypt(cookies.user)){
 				socket.user = require("./utils").decrypt(cookies.user);
-				console.log("LOGGED IN USER.");
-				console.log("- USER: " + socket.user);
 			}
 
 			if (cookies.staff){
