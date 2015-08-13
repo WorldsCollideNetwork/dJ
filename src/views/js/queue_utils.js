@@ -98,7 +98,6 @@ function QueueUtils(queue, playlist){
 		$d_icon.append($dd_icon);
 		$icon.append($d_icon);
 
-
 		$dd_details.append($title);
 		$dd_details.append($submitter);
 		$d_details.append($dd_details);

@@ -23,7 +23,8 @@ html
 							if logged_in
 								li(name="search")
 								li(name="drop")
-								li(name="veto")
+								if staff
+									li(name="veto")
 							else
 								li(name="login", modal="login")
 					div.area

@@ -27,6 +27,10 @@ app.use(function(req, res, next){
 		res.locals.logged_in = true;
 	}
 
+	if (req.cookies.staff){
+		res.locals.staff = true
+	}
+
 	next();
 });
 
