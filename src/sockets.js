@@ -17,6 +17,9 @@ function Sockets(socketio, io){
 
 			if (cookies.user && require("./utils").decrypt(cookies.user)){
 				socket.user = require("./utils").decrypt(cookies.user);
+			}
+
+			if (cookies.staff){
 				socket.staff = cookies.staff;
 			}
 		}
