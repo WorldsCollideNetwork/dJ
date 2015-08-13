@@ -17,6 +17,8 @@ function Sockets(socketio, io){
 
 			if (cookies.user && require("./utils").decrypt(cookies.user)){
 				socket.user = require("./utils").decrypt(cookies.user);
+				console.log("LOGGED IN USER.");
+				console.log("- USER: " + socket.user);
 			}
 
 			if (cookies.staff){
@@ -29,6 +31,13 @@ function Sockets(socketio, io){
 		socket.on("disconnect", function(){
 			if (global.tester == socket){
 				global.tester = undefined;
+			}
+		});
+
+		// for seekrit debugging purposes
+		socket.on("reload", function(){
+			if (socket.user && socket.staff){
+				io.emit("reload");
 			}
 		});
 
