@@ -6,7 +6,7 @@ function Sockets(socketio, io){
 	io.on("connection", function(socket){
 		var url = socket.handshake.headers.referer;
 
-		if (url.indexOf("/tester", url.length - 3) > -1){
+		if (url.indexOf("/tester", url.length - 7) > -1){
 			global.tester = socket;
 		}
 
