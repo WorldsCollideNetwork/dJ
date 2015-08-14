@@ -60,6 +60,23 @@ function QueueUtils(queue, playlist){
 		}
 	};
 
+	this.check_width = function(){
+		var queue    = $(selector(QUEUE_TYPE.QUEUE)).children(),
+		    playlist = $(selector(QUEUE_TYPE.PLAYLIST)).children();
+
+		function callback(item){
+			$(item).find("a.title").css("width", $(item).find("div.details").width());
+		}
+
+		for (var i = 0; i < queue.length; ++i){
+			callback(queue[i]);
+		}
+
+		for (var i = 0; i < playlist.length; ++i){
+			callback(playlist[i]);
+		}
+	};
+
 	this.countdown = function(count){
 		var $selector = $(selector(QUEUE_TYPE.QUEUE));
 
@@ -89,7 +106,7 @@ function QueueUtils(queue, playlist){
 		    $s_duration  = $("<span>").text(this.time(data.secs));
 
 		$title.attr("href", data.link);
-		$title.attr("title", data.title);
+		$title.attr("title", data.title + "\n" + data.link);
 		$title.attr("target", "_blank");
 
 		$i_icon.addClass($selector.children().length == 0 ? "fa-play" : "fa-angle-up");

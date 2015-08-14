@@ -22,6 +22,11 @@ function Buttons(){
 			// TODO add search calls
 		});
 
+		// firefox add button. see https://bugzilla.mozilla.org/show_bug.cgi?id=846674
+		$("li[name='add']").on("click", function(event){
+			utils.modal("add");
+		});
+
 		$("li[name='drop']").on("click", function(event){
 			queue.drop_request();
 		});
@@ -33,28 +38,58 @@ function Buttons(){
 		var that = this;
 
 		$(document).on("paste", function(event){
-			var text = (event.originalEvent || event).clipboardData.getData('text/plain');
+			if (!$("body").hasClass("firefox")){
+				var text = (event.originalEvent || event).clipboardData.getData('text/plain');
 
-			if (text.endsWith(".mp3")){
-				window.temp_url = text;
-				utils.modal("title");
-			} else {
-				queue.add_request(text);
-			}
+				if (text.endsWith(".mp3")){
+					window.temp_url = text;
+					utils.modal("title");
+				} else {
+					queue.add_request(text);
+				}
 
-			event.preventDefault();
+				event.preventDefault();
+			}	
 		});
 	}
 
 	// modal buttons
 
 	if (logged_in){
+		// add modal
+
+		function add_callback(){
+			var $link  = $("div.modal-add input.link"),
+			    $title = $("div.modal-add input.title");
+
+			if ($link.val() != ""){
+				var title = undefined;
+
+				if ($title.val() != ""){
+					title = $title.val();
+				}
+				
+				queue.add_request($link.val(), title);
+			}
+
+			utils.clear_modal("add");
+		}
+
+		$("div.modal-add input.link, div.modal-add input.title").on("keydown", function(event){
+			if (event.which == 13){
+				add_callback();
+			}
+		});
+
+		$("div.modal-add button[name='add request'").on("click", function(event){
+			add_callback();
+		});
+
 		// custom title modal
 
-		function callback(){
+		function title_callback(){
 			var title    = undefined,
-			    temp_url = undefined,
-			    $input   = $("input.title");
+			    $input   = $("div.modal-title input.title");
 
 			if ($input.val() != ""){
 				title = $input.val();
@@ -64,25 +99,25 @@ function Buttons(){
 			utils.clear_modal("title");
 		}
 
-		$("input.title").on("keydown", function(event){
+		$("div.modal-title input.title").on("keydown", function(event){
 			if (event.which == 13){
-				callback();
+				title_callback();
 			}
 		});
 
-		$("button[name='add request']").on("click", function(event){
-			callback();
+		$("div.modal-title button[name='add request']").on("click", function(event){
+			title_callback();
 		});
 	} else {
 		// login modal
 
-		$("input.username, input.password").on("keydown", function(event){
+		$("div.modal-login input.username, div.modal-login input.password").on("keydown", function(event){
 			if (event.which == 13){
 				utils.login();
 			}
 		});
 
-		$("button[name='login']").on("click", function(event){
+		$("div.modal-login button[name='login']").on("click", function(event){
 			utils.login();
 		});
 	}

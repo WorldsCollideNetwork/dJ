@@ -11,6 +11,8 @@ function Look(){
 
 		window.w_width  = $wrapper.width();
 		window.w_height = $wrapper.height();
+
+		queue_utils.check_width();
 	}
 
 	var $window  = $(window);

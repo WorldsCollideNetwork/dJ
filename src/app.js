@@ -19,7 +19,12 @@ app.use(function(req, res, next){
 	res.locals.port = require("./CONFIG.json").port;
 	res.locals.version = fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8");
 
+	if (req.get("User-Agent").indexOf("Firefox") > -1){
+		res.locals.firefox = true;
+	}
+
 	if (req.cookies.user && require("./utils").decrypt(req.cookies.user)){
+		// special debugging privileges
 		if (require("./utils").decrypt(req.cookies.user) == "Winneon"){
 			res.locals.own = true;
 		}
