@@ -19,7 +19,7 @@ app.use(function(req, res, next){
 	res.locals.port = require("./CONFIG.json").port;
 	res.locals.version = fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8");
 
-	if (req.get("User-Agent").indexOf("Firefox") > -1){
+	if (req.get("User-Agent") && req.get("User-Agent").indexOf("Firefox") > -1){
 		res.locals.firefox = true;
 	}
 
