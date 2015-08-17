@@ -268,7 +268,7 @@ ul.item_list > li div.details span {
 }
 
 ul.item_list > li div.details a.title {
-	top: 2px;
+	top: 1px;
 	overflow: hidden;
 	color: inherit;
 	font-size: 1.25rem;
@@ -278,7 +278,7 @@ ul.item_list > li div.details a.title {
 }
 
 ul.item_list > li div.details span.submitter {
-	bottom: 2px;
+	bottom: 1px;
 	font-size: .95rem;
 }
 
