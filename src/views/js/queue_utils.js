@@ -83,8 +83,8 @@ function QueueUtils(queue, playlist){
 		if ($selector.children().length > 0){
 			var $span = $($selector.children()[0]).find("div.duration span");
 
-			span.text(this.time(count));
-			span.attr("data-countup", this.time(parseInt(span.attr("data-secs")) - count));
+			$span.text(this.time(count));
+			$span.attr("data-countup", this.time(parseInt($span.attr("data-secs")) - count));
 		}
 	};
 
