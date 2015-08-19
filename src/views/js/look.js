@@ -22,8 +22,6 @@ function Look(){
 	    height   = $window.height();
 
 	if (window.params && window.params.popup){
-		$("body").attr("popup", "");
-		
 		$window.on("resize", function(event){
 			wrapper_resize({
 				width:  $(this).width(),
@@ -36,6 +34,46 @@ function Look(){
 			height: height
 		});
 	} else {
+		// colour picker
+
+		function change(colour){
+			utils.cookie({
+				name: "colour",
+				value: colour
+			});
+
+			var rgb = utils.rgb(colour);
+
+			rgb.r = rgb.r >= 20 ? rgb.r - 20 : 0;
+			rgb.g = rgb.g >= 20 ? rgb.g - 20 : 0;
+			rgb.b = rgb.b >= 20 ? rgb.b - 20 : 0;
+
+			utils.cookie({
+				name: "shade",
+				value: utils.hex(rgb)
+			});
+
+			utils.colour(colour, utils.hex(rgb));
+		}
+
+		$("input.spectrum").spectrum({
+			color: $("span.colour").text(),
+			flat: true,
+			showButtons: false,
+			showInput: true,
+			move: function(data){
+				change(data.toHexString());
+			}
+		});
+
+		$("input.sp-input").on("keyup", function(event){
+			var colour = $(this).val();
+
+			if (utils.rgb(colour)){
+				change(colour);
+			}
+		});
+
 		$wrapper.draggable();
 		$wrapper.resizable();
 
@@ -45,6 +83,8 @@ function Look(){
 
 		wrapper_resize();
 	}
+
+	utils.colour($("span.colour").text(), $("span.shade").text());
 
 	return this;
 }

@@ -60,5 +60,54 @@ function Utils(){
 		this.clear_modal("login");
 	};
 
+	this.colour = function(colour, shade){
+		$("header, div.modal button").css("background-color", colour);
+		$("div.modal button").css("box-shadow", "0px 3px 0px " + shade);
+	};
+
+	this.cookie = function(data, clear){
+		if (clear){
+			document.cookie = data.name + "=dummy; Max-Age=0; path=/";
+		} else {
+			var date = new Date();
+
+			date.setTime(date.getTime() + (data.secs * 1000));
+			document.cookie = data.name + "=" + data.value + "; expires=" + date.toGMTString() + "; path=/";
+		}
+	};
+
+	// source: http://stackoverflow.com/a/21125098
+	this.get_cookie = function(){
+		match = document.cookie.match(new RegExp(name + "=([^;]+)"));
+		
+		if (match){
+			return match[1];
+		} else {
+			return undefined;
+		}
+	};
+
+	// source: http://stackoverflow.com/a/5624139
+	this.rgb = function(hex){
+		var shorthand = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+
+		hex = hex.replace(shorthand, function(m, r, g, b){
+			return r + r + g + g + b + b;
+		});
+
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+		return result ? {
+			r: parseInt(result[1], 16),
+			g: parseInt(result[2], 16),
+			b: parseInt(result[3], 16)
+		} : undefined;
+	};
+
+	// source: http://stackoverflow.com/a/5624139
+	this.hex = function(rgb){
+		return "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
+	};
+
 	return this;
 }

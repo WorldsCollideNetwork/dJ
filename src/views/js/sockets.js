@@ -1,9 +1,12 @@
 function Sockets(){
 	socket.on("cookie", function(data){
 		if (data.clear){
-			document.cookie = data.name + "=dummy; Max-Age=0; path=/";
+			utils.cookie({ }, true);
 		} else {
-			document.cookie = data.name + "=" + data.value + "; " + data.expires + "; path=/";
+			utils.cookie({
+				name: data.name,
+				value: data.value
+			});
 		}
 	});
 

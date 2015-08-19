@@ -1,33 +1,47 @@
+- // includes function since ES6 is not implemented in Jade or Node.js yet
+- Array.prototype.includes = function(string){ return this.indexOf(string) > -1; }
 doctype html
 html
 	head
 		link(rel="stylesheet", type="text/css", href="//code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css")
 		link(rel="stylesheet", type="text/css", href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
-		title WCN dJ #{version}
+		title WCN dJ (beta) #{version}
+		link(rel="stylesheet", type="text/css", href="/css/spectrum.css")
 		link(rel="stylesheet", type="text/css", href="/css/style.css")
+		link(rel="stylesheet", type="text/css", href="/css/utils.css")
 		link(rel="stylesheet", type="text/css", href="/css/modals.css")
 		link(rel="stylesheet", type="text/css", href="/css/animations.css")
 		link(rel="stylesheet", type="text/css", href="/css/overrides.css")
 		script(type="text/javascript", src="//code.jquery.com/jquery-2.1.4.min.js")
 		script(type="text/javascript", src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js")
 		script(type="text/javascript", src="//cdn.socket.io/socket.io-1.3.5.js")
-	- var clazz = ""
-	- if (logged_in){ clazz = "logged_in" }
-	- if (firefox){ clazz = clazz + " firefox" }
-	body(class=clazz)
+	body(class=string)
+		if options.includes("logged_in")
+			if !options.includes("firefox")
+				div.add_notice
+			if !options.includes("popup")
+				div.popup
+					i.fa.fa-arrows-alt
+				div.colour
+					i.fa.fa-paint-brush
+					input.spectrum(type="text")
+		div.info
+			span.port= port
+			span.colour= colour
+			span.shade= shade
 		div.content
 			div
 				div.wrapper
-					header
+					header(style="background-color: #{colour}")
 						div.logo
 							span(data-version=version) WCN dJ
 						ul.nav
-							if logged_in
+							if options.includes("logged_in")
 								li(name="search")
-								if firefox
+								if options.includes("firefox")
 									li(name="add")
 								li(name="drop")
-								if staff
+								if options.includes("staff")
 									li(name="veto")
 							else
 								li(name="login", modal="login")
@@ -55,11 +69,8 @@ html
 					div.modal.modal-title
 						input.title(type="text", placeholder="Custom Title")
 						button(name="add request")
-		if logged_in
-			div.popup
-				i.fa.fa-arrows-alt
 		div.screen
-		span.port= port
+		script(type="text/javascript", src="/js/spectrum.js")
 		script(type="text/javascript", src="/js/utils.js")
 		script(type="text/javascript", src="/js/queue_utils.js")
 		script(type="text/javascript", src="/js/queue.js")

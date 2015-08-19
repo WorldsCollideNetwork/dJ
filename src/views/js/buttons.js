@@ -18,6 +18,25 @@ function Buttons(){
 			);
 		});
 
+		// colour button
+
+		$("div.colour > i").on("click", function(event){
+			var picker = $("div.colour > div.sp-container");
+
+			if (picker.is(":visible")){
+				picker.hide();
+			} else {
+				picker.show();
+			}
+		});
+
+		$(document).on("click", function(event){
+			if (event.target.className != "fa fa-paint-brush"){
+				var picker = $("div.colour > div.sp-container");
+				if (picker.is(":visible")) picker.hide();
+			}
+		});
+
 		$("li[name='search']").on("click", function(event){
 			// TODO add search calls
 		});

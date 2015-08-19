@@ -19,48 +19,6 @@ body {
 	font-family: "Roboto";
 }
 
-span.port {
-	display: none;
-}
-
-div.message {
-	position: absolute;
-	top: -50px;
-	left: 0px; right: 0px;
-	background-color: #FFF7CE;
-	border-radius: 2px;
-	box-sizing: border-box;
-	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
-	width: 400px;
-	margin: 0px auto;
-	padding: 7px 40px;
-	font-family: "Roboto Condensed";
-	text-align: center;
-	z-index: 200;
-}
-
-div.message.error {
-	background-color: #FFA099;
-}
-
-div.popup {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 2rem;
-	height: 2rem;
-	margin: 20px 20px;
-	color: #D2D2D2;
-	font-size: 2rem;
-	line-height: 2rem;
-	text-align: center;
-	cursor: pointer;
-}
-
-body[popup] div.popup {
-	display: none;
-}
-
 div.content {
 	display: table;
 	width: 100%;
@@ -99,7 +57,6 @@ div.content div.wrapper > div.resize {
 
 header {
 	position: relative;
-	background-color: #F44336;
 	box-sizing: border-box;
 	height: 58px;
 	color: #FFFFFF;

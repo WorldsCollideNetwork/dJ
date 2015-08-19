@@ -19,22 +19,45 @@ app.use(function(req, res, next){
 	res.locals.port = require("./CONFIG.json").port;
 	res.locals.version = fs.readFileSync(path.join(__dirname, "VERSION_DEVEL"), "utf8");
 
-	if (req.get("User-Agent") && req.get("User-Agent").indexOf("Firefox") > -1){
-		res.locals.firefox = true;
+	if (req.cookies.colour){
+		res.locals.colour = req.cookies.colour;
+	} else {
+		res.locals.colour = "#F44336";
 	}
+
+	if (req.cookies.shade){
+		res.locals.shade = req.cookies.shade;
+	} else {
+		res.locals.shade = "#D02B2B";
+	}
+
+	// options
+
+	var options = [];
 
 	if (req.cookies.user && require("./utils").decrypt(req.cookies.user)){
 		// special debugging privileges
 		if (require("./utils").decrypt(req.cookies.user) == "Winneon"){
-			res.locals.own = true;
+			options.push("own");
 		}
 
-		res.locals.logged_in = true;
+		options.push("logged_in");
+	}
+
+	if (req.get("User-Agent") && req.get("User-Agent").indexOf("Firefox") > -1){
+		options.push("firefox");
 	}
 
 	if (req.cookies.staff){
-		res.locals.staff = true
+		options.push("staff");
 	}
+
+	if (req.query.popup){
+		options.push("popup");
+	}
+
+	res.locals.string = options.join(" ");
+	res.locals.options = options;
 
 	next();
 });

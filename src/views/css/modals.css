@@ -42,10 +42,8 @@ div.content div.wrapper div.modal input {
 }
 
 div.content div.wrapper div.modal button {
-	background-color: #F44336;
 	border: none;
 	border-radius: 2px;
-	box-shadow: 0px 3px 0px #D02B2B;
 	margin-bottom: 3px;
 	padding: 7px 25px;
 	color: #FFFFFF;
