@@ -258,7 +258,7 @@ ul.item_list > li div.duration > div > div {
 }
 
 ul.item_list > li div.duration span:hover:before {
-	content: attr(data-duration)
+	content: attr(data-countup)
 }
 
 ul.item_list > li div.duration > div > div {

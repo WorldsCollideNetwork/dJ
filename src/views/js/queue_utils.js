@@ -81,7 +81,10 @@ function QueueUtils(queue, playlist){
 		var $selector = $(selector(QUEUE_TYPE.QUEUE));
 
 		if ($selector.children().length > 0){
-			$($selector.children()[0]).find("div.duration span").text(this.time(count));
+			var $span = $($selector.children()[0]).find("div.duration span");
+
+			span.text(this.time(count));
+			span.attr("data-countup", this.time(parseInt(span.attr("data-secs")) - count));
 		}
 	};
 
@@ -120,7 +123,9 @@ function QueueUtils(queue, playlist){
 		$d_details.append($dd_details);
 		$details.append($d_details);
 
-		$s_duration.attr("data-duration", this.time(data.secs));
+		$s_duration.attr("title", this.time(data.secs));
+		$s_duration.attr("data-countup", this.time(data.secs));
+		$s_duration.attr("data-secs", data.secs);
 		$dd_duration.append($s_duration);
 		$d_duration.append($dd_duration);
 		$duration.append($d_duration);
