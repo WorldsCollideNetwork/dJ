@@ -120,6 +120,7 @@ function QueueUtils(queue, playlist){
 		$d_details.append($dd_details);
 		$details.append($d_details);
 
+		$s_duration.attr("data-duration", this.time(data.secs));
 		$dd_duration.append($s_duration);
 		$d_duration.append($dd_duration);
 		$duration.append($d_duration);

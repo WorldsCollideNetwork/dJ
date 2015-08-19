@@ -248,7 +248,19 @@ ul.item_list > li div.duration span {
 	margin-right: 1rem;
 }
 
+ul.item_list > li div.duration span:hover {
+	font-size: 0px;
+}
+
+ul.item_list > li div.duration span:hover:before,
 ul.item_list > li div.duration > div > div {
 	font-size: 1.2rem;
+}
+
+ul.item_list > li div.duration span:hover:before {
+	content: attr(data-duration)
+}
+
+ul.item_list > li div.duration > div > div {
 	text-align: right;
 }
