@@ -7,16 +7,19 @@ div.message {
 
 div.screen,
 div.content div.wrapper div.modal,
-div.sp-container {
+div.sp-container,
+ul.dropdown {
 	visibility: hidden;
 	opacity: 0;
-	-webkit-transition: visibility .3s ease, opacity .3s ease;
-	-moz-transition: visibility .3s ease, opacity .3s ease;
-	-ms-transition: visibility .3s ease, opacity .3s ease;
-	-o-transition: visibility .3s ease, opacity .3s ease;
-	transition: visibility .3s ease, opacity .3s ease;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
 }
 
+ul.dropdown:hover,
+div.logo > span:hover + ul.dropdown,
 div.visible {
 	visibility: visible !important;
 	opacity: 1 !important;
@@ -25,6 +28,19 @@ div.visible {
 div.content div.wrapper div.modal.visible {
 	z-index: 1;
 }
+
+ul.dropdown > li > a {
+	-webkit-transition: color .2s ease;
+	-moz-transition: color .2s ease;
+	-ms-transition: color .2s ease;
+	-o-transition: color .2s ease;
+	transition: color .2s ease;
+}
+
+ul.dropdown > li > a:hover {
+	color: #B2B2B2;
+}
+
 
 @-webkit-keyframes message {
 	15% {

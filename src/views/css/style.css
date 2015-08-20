@@ -81,10 +81,6 @@ header div.logo > span:before {
 	font-weight: 400;
 }
 
-header div.logo > span:hover:before {
-	content: attr(data-version);
-}
-
 header ul.nav,
 header ul.nav > li {
 	display: inline-block;

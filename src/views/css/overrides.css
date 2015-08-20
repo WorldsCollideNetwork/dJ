@@ -17,6 +17,13 @@ div.sp-container {
 	border: none;
 	border-radius: 2px;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+	overflow: visible;
+}
+
+div.sp-container > div.sp-picker-container {
+	border: none;
+	margin-bottom: 0px;
+	padding-bottom: 6px;
 }
 
 div.sp-top {

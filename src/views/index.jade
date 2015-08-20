@@ -34,7 +34,11 @@ html
 				div.wrapper
 					header(style="background-color: #{colour}")
 						div.logo
-							span(data-version=version) WCN dJ
+							span WCN dJ
+							if options.includes("logged_in")
+								ul.dropdown
+									li
+										a(name="Logout", href="javascript:void(0)")
 						ul.nav
 							if options.includes("logged_in")
 								li(name="search")

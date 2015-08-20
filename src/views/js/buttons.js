@@ -13,7 +13,7 @@ function Buttons(){
 		$("div.popup").on("click", function(event){
 			window.open(
 				"http://" + window.location.hostname + "/?popup=1",
-				$("title"),
+				$("title").text(),
 				"width=" + window.w_width + ",height=" + window.w_height
 			);
 		});
@@ -29,6 +29,11 @@ function Buttons(){
 				var picker = $("div.colour > div.sp-container");
 				if (picker.is(":visible")) picker.removeClass("visible");
 			}
+		});
+
+		// logout dropdown
+		$("a[name='Logout'").on("click", function(event){
+			socket.emit("logout");
 		});
 
 		// search button
