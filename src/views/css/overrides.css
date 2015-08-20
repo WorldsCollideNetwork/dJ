@@ -6,8 +6,7 @@ div.ui-draggable-dragging {
 	cursor: move;
 }
 
-input.spectrum,
-div.sp-container {
+input.spectrum {
 	display: none;
 }
 

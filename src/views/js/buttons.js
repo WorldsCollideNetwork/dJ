@@ -21,40 +21,37 @@ function Buttons(){
 		// colour button
 
 		$("div.colour > i").on("click", function(event){
-			var picker = $("div.colour > div.sp-container");
-
-			if (picker.is(":visible")){
-				picker.hide();
-			} else {
-				picker.show();
-			}
+			$("div.colour > div.sp-container").toggleClass("visible");
 		});
 
 		$(document).on("click", function(event){
 			if (event.target.className != "fa fa-paint-brush"){
 				var picker = $("div.colour > div.sp-container");
-				if (picker.is(":visible")) picker.hide();
+				if (picker.is(":visible")) picker.removeClass("visible");
 			}
 		});
 
+		// search button
 		$("li[name='search']").on("click", function(event){
 			// TODO add search calls
 		});
 		
+		// add button
 		$("li[name='add']").on("click", function(event){
 			utils.modal("add");
 		});
 
+		// drop button
 		$("li[name='drop']").on("click", function(event){
 			queue.drop_request();
 		});
 
+		// veto button
 		$("li[name='veto']").on("click", function(event){
 			queue.veto_request();
 		});
 
-		var that = this;
-
+		// adding via pasting event
 		$(document).on("paste", function(event){
 			if (!$("body").hasClass("no_paste") && event.target.localName != "input"){
 				var text = (event.originalEvent || event).clipboardData.getData('text/plain');
@@ -71,7 +68,14 @@ function Buttons(){
 		});
 	}
 
-	// modal buttons
+	// modals
+
+	// exit modal key
+	$(document).on("keydown", function(event){
+		if (event.which == 27 && $("div.wrapper").hasClass("modal")){
+			utils.clear_modal();
+		}
+	});
 
 	if (logged_in){
 		// add modal
@@ -90,7 +94,7 @@ function Buttons(){
 				queue.add_request($link.val(), title);
 			}
 
-			utils.clear_modal("add");
+			utils.clear_modal();
 		}
 
 		$("div.modal-add input.link, div.modal-add input.title").on("keydown", function(event){
@@ -114,7 +118,7 @@ function Buttons(){
 			}
 
 			queue.add_request(window.temp_url, title);
-			utils.clear_modal("title");
+			utils.clear_modal();
 		}
 
 		$("div.modal-title input.title").on("keydown", function(event){

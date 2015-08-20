@@ -45,8 +45,7 @@ app.use(function(req, res, next){
 	}
 
 	if (req.get("User-Agent")){
-		if (req.get("User-Agent").indexOf("Firefox") > -1 ||
-			req.get("User-Agent").indexOf("Edge") > -1){
+		if (req.get("User-Agent").indexOf("Chrome") == -1){
 			options.push("no_paste");
 		}
 	}

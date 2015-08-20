@@ -32,16 +32,6 @@ function Sockets(socketio, io){
 			}
 		});
 
-		// for seekrit debugging purposes
-		socket.on("reload", function(){
-			if (socket.user && socket.staff){
-				console.log("CLIENT RELOAD INITIATED.");
-				console.log("- USER: " + socket.user);
-
-				io.emit("reload");
-			}
-		});
-
 		socket.on("login", function(data){
 			require("request")({
 				method: "POST",
@@ -60,16 +50,14 @@ function Sockets(socketio, io){
 					if (body.success){
 						var utils = require("./utils");
 
-						utils.cookie(socket, {
+						socket.emit("cookie", {
 							name: "user",
-							value: utils.encrypt(data.username),
-							secs: (60 * 60 * 24 * 365 * 20) // 20 years
+							value: utils.encrypt(data.username)
 						});
 
-						utils.cookie(socket, {
+						socket.emit("cookie", {
 							name: "staff",
-							value: body.data.staff,
-							secs: (60 * 60 * 24 * 365 * 20) // 20 years
+							value: body.data.staff
 						});
 
 						socket.emit("reload");
@@ -81,6 +69,17 @@ function Sockets(socketio, io){
 					}
 				}
 			});
+		});
+
+		socket.on("logout", function(){
+			if (socket.user){
+				socket.emit("cookie", {
+					name: "user",
+					clear: true
+				});
+
+				socket.emit("reload");
+			}
 		});
 
 		socket.on("add", function(data){
@@ -98,6 +97,16 @@ function Sockets(socketio, io){
 		socket.on("veto", function(){
 			if (socket.user){
 				dj.veto(socket);
+			}
+		});
+
+		// for seekrit debugging purposes
+		socket.on("reload", function(){
+			if (socket.user && socket.staff){
+				console.log("CLIENT RELOAD INITIATED.");
+				console.log("- USER: " + socket.user);
+
+				io.emit("reload");
 			}
 		});
 	});

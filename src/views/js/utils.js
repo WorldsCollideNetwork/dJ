@@ -9,7 +9,7 @@ function Utils(){
 			$("div.screen, div.modal.modal-" + name).addClass("visible");
 
 			$("div.screen").on("click", function(event){
-				that.clear_modal(name);
+				that.clear_modal();
 			});
 
 			setTimeout(function(){
@@ -20,12 +20,17 @@ function Utils(){
 		}
 	};
 
-	this.clear_modal = function(name){
-		if ($("div.modal.modal-" + name).hasClass("visible")){
-			$("div.wrapper").removeClass("modal");
-			$("div.screen, div.modal.modal-" + name).removeClass("visible");
+	this.clear_modal = function(){
+		for (var i = 0; i < $("div.modal").length; i++){
+			var $item = $($("div.modal")[i]);
 
-			$("div.modal.modal-" + name).find("input").val("");
+			if ($item.hasClass("visible")){
+				$("div.wrapper").removeClass("modal");
+				$("div.screen").removeClass("visible");
+				$item.removeClass("visible").find("input").val("");
+
+				break;
+			}
 		}
 	};
 
@@ -57,7 +62,7 @@ function Utils(){
 			});
 		}
 
-		this.clear_modal("login");
+		this.clear_modal();
 	};
 
 	this.colour = function(colour, shade){
@@ -65,13 +70,13 @@ function Utils(){
 		$("div.modal button").css("box-shadow", "0px 3px 0px " + shade);
 	};
 
-	this.cookie = function(data, clear){
-		if (clear){
+	this.cookie = function(data){
+		if (data.clear){
 			document.cookie = data.name + "=dummy; Max-Age=0; path=/";
 		} else {
 			var date = new Date();
 
-			date.setTime(date.getTime() + (data.secs * 1000));
+			date.setTime(date.getTime() + (60 * 60 * 24 * 365 * 20 * 1000));
 			document.cookie = data.name + "=" + data.value + "; expires=" + date.toGMTString() + "; path=/";
 		}
 	};

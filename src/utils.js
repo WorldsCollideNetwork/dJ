@@ -35,17 +35,6 @@ function Utils(){
 		}
 	};
 
-	this.cookie = function(socket, data){
-		var date = new Date();
-		date.setTime(date.getTime() + (data.secs * 1000)),
-
-		socket.emit("cookie", {
-			name: data.name,
-			value: data.value,
-			expires: "expires=" + date.toGMTString()
-		});
-	};
-
 	this.test_mp3 = function(url, callback){
 		if (global.tester){
 			global.tester.removeAllListeners("test");

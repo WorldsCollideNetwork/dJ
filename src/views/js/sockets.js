@@ -1,13 +1,6 @@
 function Sockets(){
 	socket.on("cookie", function(data){
-		if (data.clear){
-			utils.cookie({ }, true);
-		} else {
-			utils.cookie({
-				name: data.name,
-				value: data.value
-			});
-		}
+		utils.cookie(data);
 	});
 
 	socket.on("countdown", function(count){
