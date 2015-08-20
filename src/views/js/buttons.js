@@ -56,7 +56,7 @@ function Buttons(){
 		var that = this;
 
 		$(document).on("paste", function(event){
-			if (!$("body").hasClass("no_paste")){
+			if (!$("body").hasClass("no_paste") && event.target.localName != "input"){
 				var text = (event.originalEvent || event).clipboardData.getData('text/plain');
 
 				if (text.endsWith(".mp3")){

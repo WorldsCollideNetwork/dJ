@@ -60,7 +60,7 @@ div.content div.wrapper div.modal button:before {
 div.content div.wrapper div.modal button:active {
 	position: relative;
 	top: 3px;
-	box-shadow: none;
+	box-shadow: none !important;
 }
 
 div.content div.wrapper div.modal input:focus,
