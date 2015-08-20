@@ -5,5 +5,5 @@ console.log = function(data){
 
 var server = require("./app").listen(require("./CONFIG.json").port, function(){
 	console.log("LISTENING.");
-	console.log("- PORT:    " + server.address().port);
+	console.log("- PORT: " + server.address().port);
 });
