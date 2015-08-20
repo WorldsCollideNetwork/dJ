@@ -32,8 +32,13 @@ function Buttons(){
 		});
 
 		// logout dropdown
-		$("a[name='Logout'").on("click", function(event){
+		$("a[name='Logout']").on("click", function(event){
 			socket.emit("logout");
+		});
+
+		// force client reload dropdown
+		$("a[name='Force Reload']").on("click", function(event){
+			socket.emit("reload");
 		});
 
 		// search button

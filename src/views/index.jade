@@ -39,6 +39,9 @@ html
 								ul.dropdown
 									li
 										a(name="Logout", href="javascript:void(0)")
+									if options.includes("own")
+										li
+											a(name="Force Reload", href="javascript:void(0)")
 						ul.nav
 							if options.includes("logged_in")
 								li(name="search")
