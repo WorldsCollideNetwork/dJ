@@ -113,7 +113,7 @@ function Buttons(){
 			}
 		});
 
-		$("div.modal-add button[name='add request'").on("click", function(event){
+		$("div.modal-add button[name='add request']").on("click", function(event){
 			add_callback();
 		});
 
