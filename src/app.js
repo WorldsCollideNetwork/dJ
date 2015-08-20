@@ -72,7 +72,7 @@ app.get("*", function(req, res){
 	} else {
 		url = url.replace("/", "");
 
-		if (res.locals.own){
+		if (res.locals.options.indexOf("own") > -1){
 			res.render(url);
 		} else {
 			res.redirect("/");
