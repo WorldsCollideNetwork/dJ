@@ -17,7 +17,7 @@ html
 		script(type="text/javascript", src="//cdn.socket.io/socket.io-1.3.5.js")
 	body(class=string)
 		if options.includes("logged_in")
-			if !options.includes("firefox")
+			if !options.includes("no_paste")
 				div.add_notice
 			if !options.includes("popup")
 				div.popup
@@ -38,8 +38,7 @@ html
 						ul.nav
 							if options.includes("logged_in")
 								li(name="search")
-								if options.includes("firefox")
-									li(name="add")
+								li(name="add")
 								li(name="drop")
 								if options.includes("staff")
 									li(name="veto")

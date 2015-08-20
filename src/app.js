@@ -44,8 +44,13 @@ app.use(function(req, res, next){
 		options.push("logged_in");
 	}
 
-	if (req.get("User-Agent") && req.get("User-Agent").indexOf("Firefox") > -1){
-		options.push("firefox");
+	if (req.get("User-Agent"){
+		if (
+			req.get("User-Agent").indexOf("Firefox") > -1 ||
+			req.get("User-Agent").indexOf("Edge") > -1
+		){
+			options.push("no_paste");
+		}
 	}
 
 	if (req.cookies.staff){

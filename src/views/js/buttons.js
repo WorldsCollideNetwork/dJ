@@ -40,8 +40,7 @@ function Buttons(){
 		$("li[name='search']").on("click", function(event){
 			// TODO add search calls
 		});
-
-		// firefox add button. see https://bugzilla.mozilla.org/show_bug.cgi?id=846674
+		
 		$("li[name='add']").on("click", function(event){
 			utils.modal("add");
 		});
@@ -57,7 +56,7 @@ function Buttons(){
 		var that = this;
 
 		$(document).on("paste", function(event){
-			if (!$("body").hasClass("firefox")){
+			if (!$("body").hasClass("no_paste")){
 				var text = (event.originalEvent || event).clipboardData.getData('text/plain');
 
 				if (text.endsWith(".mp3")){
