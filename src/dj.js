@@ -56,7 +56,8 @@ function dJ(io){
 				});
 			} else if (that.get(socket.user)){
 				socket.emit("message", {
-					message: "You have already requested a song!"
+					message: "You have already requested a song!",
+					err: true
 				});
 			} else {
 				queue.list.push(info);
