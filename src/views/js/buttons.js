@@ -41,6 +41,14 @@ function Buttons(){
 			socket.emit("reload");
 		});
 
+		$("li.left").on("click", function(event){
+			utils.view(0);
+		});
+
+		$("li.right").on("click", function(event){
+			utils.view(1);
+		});
+
 		// search button
 		$("li[name='search']").on("click", function(event){
 			// TODO add search calls

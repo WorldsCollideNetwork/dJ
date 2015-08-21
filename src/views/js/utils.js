@@ -41,10 +41,10 @@ function Utils(){
 			clazz = "message error";
 		}
 
-		var $wrapper = $("div.wrapper"),
+		var $wrapper = $("div.wrapper > div.messages"),
 		    $message = $("<div/>", { "class": clazz }).text(text);
 
-		$wrapper.prepend($message);
+		$wrapper.append($message);
 
 		setTimeout(function(){
 			$message.remove();
@@ -68,6 +68,49 @@ function Utils(){
 	this.colour = function(colour, shade){
 		$("header, div.modal button").css("background-color", colour);
 		$("div.modal button").css("box-shadow", "0px 3px 0px " + shade);
+	};
+
+	this.view = function(which){
+		var current = $("div.current").attr("class").replace("current", "").replace(" ", "");
+
+		switch (current){
+			case "search":
+				if (which == 1){
+					$("div.current").animate({
+						left: "-100%"
+					}).removeClass("current");
+
+					$("div.queue").animate({
+						left: "0px"
+					}).addClass("current");
+				}
+
+				break;
+			case "queue":
+				var next = which == 0 ? "search" : "playlist";
+
+				$("div.current").animate({
+					left: which == 0 ? "100%" : "-100%"
+				}).removeClass("current");
+
+				$("div." + next).animate({
+					left: "0px"
+				}).addClass("current");
+
+				break;
+			case "playlist":
+				if (which == 0){
+					$("div.current").animate({
+						left: "100%"
+					}).removeClass("current");
+
+					$("div.queue").animate({
+						left: "0px"
+					}).addClass("current");
+				}
+
+				break;
+		}
 	};
 
 	this.cookie = function(data){

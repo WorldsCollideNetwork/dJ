@@ -32,6 +32,7 @@ html
 		div.content
 			div
 				div.wrapper
+					div.messages
 					header(style="background-color: #{colour}")
 						div.logo
 							span WCN dJ
@@ -44,6 +45,10 @@ html
 											a(name="Force Reload", href="javascript:void(0)")
 						ul.nav
 							if options.includes("logged_in")
+								li.left
+									i.fa.fa-angle-left
+								li.right
+									i.fa.fa-angle-right
 								li(name="add")
 								li(name="drop")
 								if options.includes("staff")
@@ -51,7 +56,12 @@ html
 							else
 								li(name="login", modal="login")
 					div.area
-						div.queue
+						div.search
+							div.none
+								div
+									span
+							ul.item_list
+						div.queue.current
 							div.none
 								div
 									span

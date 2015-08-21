@@ -108,10 +108,6 @@ header ul.nav > li:before {
 	content: attr(name);
 }
 
-header ul.nav > li[name="search"]:hover:before {
-	content: "coming soon";
-}
-
 header ul.nav > li:last-child {
 	margin-right: 0px;
 }
@@ -126,23 +122,40 @@ div.area {
 	left: 0px; right: 0px;
 }
 
+div.search,
 div.queue,
 div.playlist {
+	position: absolute;
+	top: 0px;
 	box-sizing: border-box;
+	width: 100%;
 	height: 100%;
 	padding: 10px 15px;
+}
+
+div.search {
+	left: -100%;
+}
+
+div.queue {
+	left: 0px;
+}
+
+div.playlist {
+	left: 100%;
+}
+
+div.search > div.none span:before {
+	content: "Search coming soon.";
 }
 
 div.queue > div.none span:before {
 	content: "There are no requests in the queue.";
 }
 
-div.playlist {
-	display: none;
-}
-
 div.playlist > div.none span:before {
-	content: "There are no requests in your playlist.";
+	/* content: "There are no requests in your playlist."; */
+	content: "Playlist coming soon.";
 }
 
 div.none {
