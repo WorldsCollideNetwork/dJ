@@ -1,4 +1,4 @@
-# dJ [![Build Status](https://travis-ci.org/Winneon/dJ.svg)](https://travis-ci.org/Winneon/dJ)
+# dJ
 This is source repository for the WCN dJ.
 
 The WCN dJ allows for users on the main WCN Teamspeak server (t4i.teamspeak.cc) to request music at their disposal to play in the general channel.
