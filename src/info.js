@@ -55,6 +55,8 @@ function get(socket, data, callback){
 		return id;
 	}
 
+	var title = data.title;
+
 	if (data.link.indexOf("youtube.com") > -1 || data.link.indexOf("youtu.be") > -1){
 		youtube.videos.list({
 			part: "snippet,contentDetails",
@@ -96,7 +98,7 @@ function get(socket, data, callback){
 				callback(false, {
 					type: type.YOUTUBE,
 					user: socket.user,
-					title: data.items[0].snippet.title,
+					title: title && title != "" ? title : data.items[0].snippet.title,
 					link: "https://www.youtube.com/watch?v=" + data.items[0].id,
 					duration: eval("(" + duration),
 					addition: addition
@@ -114,7 +116,7 @@ function get(socket, data, callback){
 				callback(false, {
 					type: type.SOUNDCLOUD,
 					user: socket.user,
-					title: data.title,
+					title: title && title != "" ? title : data.title,
 					link: data.permalink_url,
 					duration: Math.round(data.duration / 1000),
 					addition: 0
@@ -131,7 +133,7 @@ function get(socket, data, callback){
 				callback(false, {
 					type: type.VIMEO,
 					user: socket.user,
-					title: data.raw.title,
+					title: title && title != "" ? title : data.raw.title,
 					link: "https://player.vimeo.com/video/" + parse_vimeo_url(link) + "?autoplay=1",
 					duration: data.raw.duration,
 					addition: 0
@@ -146,7 +148,7 @@ function get(socket, data, callback){
 				callback(false, {
 					type: type.RAW,
 					user: socket.user,
-					title: data.title && data.title != "" ? data.title : data.link,
+					title: title && title != "" ? title : data.link,
 					link: data.link,
 					duration: Math.round(duration),
 					addition: 0
